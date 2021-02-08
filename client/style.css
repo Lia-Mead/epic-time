@@ -1,3 +1,138 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
 body {
     background-color: ghostwhite;
+    font-family: "Montserrat", sans-serif;
+    width: 100vw;
+    height: 100vh;
+}
+
+header {
+    /* background-color: #c3aa98; */
+    background-color: #000000;
+}
+
+h1 {
+    /* color: darkgray; */
+    color: #5ab1a9;
+    text-align: center;
+    margin: 40px 30px 30px;
+}
+
+h2 {
+    /* color: #d1a3e0; */
+    color: #56568e;
+    font-family: "Space Mono";
+    font-weight: 100;
+    margin: 20px;
+}
+/* 
+hr {
+    width: 100%;
+    border: 1px darkgray dashed;
+} */
+
+.main-con {
+    display: flex;
+    justify-content: center;
+}
+
+.center-box {
+    display: flex;
+    justify-content: center;
+    height: 60vh;
+}
+
+.con {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.con > p {
+    width: 50%;
+    text-align: center;
+    align-self: center;
+    line-height: 1.4em;
+}
+
+.logo {
+    width: 20%;
+    padding: 20px;
+}
+
+.logo-reg {
+    width: 20%;
+    padding: 20px;
+    text-align: center;
+}
+
+.reg-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+input {
+    width: 300px;
+    font-size: 1em;
+    padding: 13px 11px;
+    margin: 5px 20px;
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid darkgrey !important;
+    color: #5ab1a9;
+}
+
+input:hover,
+input:active,
+input:focus {
+    outline: none;
+}
+
+input:-webkit-autofill {
+    background-color: transparent !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #191814 inset !important;
+}
+input:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: darkgray;
+    /* color: white; */
+    opacity: 1; /* Firefox */
+}
+
+.btn {
+    padding: 10px 14px;
+    width: 140px;
+    border-radius: 40px;
+    background-color: #5ab1a9;
+    border: 1px solid #00af91;
+    font-family: "Space Mono", monospace;
+    font-size: 18px;
+    margin: 30px 20px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #fff;
+}
+
+.btn:hover {
+    background-color: #6ed4c3;
+    border: 1px solid #00af91;
+    transition: all 0.3s;
 }
