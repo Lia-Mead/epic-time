@@ -11,24 +11,43 @@ body {
 }
 
 header {
-    /* background-color: #c3aa98; */
-    background-color: #000000;
+    background-color: #ffffff;
+    height: 60px;
+    box-shadow: 0px 16px 8px rgb(132 128 128 / 8%);
 }
 
 h1 {
     /* color: darkgray; */
     color: #5ab1a9;
     text-align: center;
-    margin: 40px 30px 30px;
+    margin: 40px 30px 0px;
 }
 
 h2 {
-    /* color: #d1a3e0; */
-    color: #56568e;
+    color: #a778b6;
+    /* color: #56568e; */
     font-family: "Space Mono";
+    text-align: center;
     font-weight: 100;
     margin: 20px;
 }
+
+a {
+    color: #6ed4c3;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1.6em;
+}
+
+a:hover {
+    color: #5ab1a9;
+}
+
+p {
+    margin: 10px 0;
+}
+
 /* 
 hr {
     width: 100%;
@@ -43,40 +62,49 @@ hr {
 .center-box {
     display: flex;
     justify-content: center;
-    height: 60vh;
+    width: 100%;
 }
 
 .con {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    margin: 0 auto;
+    height: calc(100vh - 60px);
+    /* flex-direction: column; */
+    /* align-items: center;
+    margin: 0 auto; */
+    /* background-color: #262323; */
 }
 
-.con > p {
+.intro {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: #262323;
+}
+
+.intro > p {
     width: 50%;
     text-align: center;
     align-self: center;
     line-height: 1.4em;
+    color: darkgray;
 }
+
+/* .logo2 {
+    width: 20%;
+    padding: 20px;
+} */
 
 .logo {
-    width: 20%;
-    padding: 20px;
-}
-
-.logo-reg {
-    width: 20%;
-    padding: 20px;
-    text-align: center;
+    width: 250px;
+    padding: 12px;
 }
 
 .reg-form {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 80%;
-    margin: 0 auto;
     align-items: center;
 }
 
@@ -120,7 +148,7 @@ input:-webkit-autofill {
 
 .btn {
     padding: 10px 14px;
-    width: 140px;
+    min-width: 140px;
     border-radius: 40px;
     background-color: #5ab1a9;
     border: 1px solid #00af91;
@@ -135,4 +163,23 @@ input:-webkit-autofill {
     background-color: #6ed4c3;
     border: 1px solid #00af91;
     transition: all 0.3s;
+}
+
+@media only screen and (max-width: 600px) {
+    .con {
+        flex-direction: column;
+    }
+
+    .intro {
+        height: 100%;
+    }
+
+    .center-box {
+        height: 100%;
+    }
+
+    .btn {
+        width: 80%;
+        padding: 20px;
+    }
 }
