@@ -1,7 +1,7 @@
-export default function Logo() {
+export default function Header() {
     return (
         <header>
-            <img className="logo" src="logo-green.svg" alt="logo" />
+            <img className="logo" src="logo-dark.svg" alt="logo" />
         </header>
     );
 }

@@ -72,7 +72,6 @@ export default class Registration extends React.Component {
             <div className="center-box">
                 <div className="reg-form">
                     <h2>Registration</h2>
-                    {/*strategy 2 for binding*/}
                     <input
                         onChange={(e) => this.handleChange(e)}
                         name="first"
@@ -100,10 +99,15 @@ export default class Registration extends React.Component {
                     <button className="btn" onClick={() => this.handleClick()}>
                         Submit
                     </button>
-                    <Link to="/login">
+                    <p>
+                        Already have an account?
+                        <Link to="/login"> Click here </Link> to Log in
+                    </p>
+
+                    {/* <Link to="/login">
                         Already have an account? <br />
                         Click here to Log in!
-                    </Link>
+                    </Link> */}
                     {this.state.error && <p>Something broke :(</p>}
                 </div>
             </div>

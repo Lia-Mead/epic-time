@@ -7,6 +7,5 @@ if (location.pathname === "/welcome") {
     elem = <Welcome />;
 } else {
     elem = <Header />;
-    // elem = <p>I am not the welcome route!</p>;
 }
 ReactDOM.render(elem, document.querySelector("main"));

@@ -12,6 +12,7 @@ body {
 
 header {
     background-color: #ffffff;
+    /* background-color: #ad94da; */
     height: 60px;
     box-shadow: 0px 16px 8px rgb(132 128 128 / 8%);
 }
@@ -33,7 +34,7 @@ h2 {
 }
 
 a {
-    color: #6ed4c3;
+    color: #5ab1a9;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -41,7 +42,7 @@ a {
 }
 
 a:hover {
-    color: #5ab1a9;
+    color: #6ed4c3;
 }
 
 p {
@@ -54,10 +55,11 @@ hr {
     border: 1px darkgray dashed;
 } */
 
-.main-con {
+/* .main-con {
     display: flex;
     justify-content: center;
-}
+    height: calc(100vh - 60px);
+} */
 
 .center-box {
     display: flex;
@@ -69,16 +71,13 @@ hr {
     display: flex;
     justify-content: center;
     height: calc(100vh - 60px);
-    /* flex-direction: column; */
-    /* align-items: center;
-    margin: 0 auto; */
-    /* background-color: #262323; */
 }
 
 .intro {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
     width: 100%;
     background-color: #262323;
 }
@@ -91,14 +90,15 @@ hr {
     color: darkgray;
 }
 
-/* .logo2 {
-    width: 20%;
-    padding: 20px;
-} */
-
 .logo {
-    width: 250px;
-    padding: 12px;
+    width: 217px;
+    padding: 17px;
+}
+
+.logo-welcome {
+    width: 220px;
+    padding: 16px;
+    margin-left: 20px;
 }
 
 .reg-form {

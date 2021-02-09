@@ -58,12 +58,20 @@ export default class Login extends React.Component {
                     <button className="btn" onClick={() => this.handleClick()}>
                         Log in
                     </button>
-                    <Link to="/">
+                    {/* <Link to="/">
                         Don't have an account yet? Click here to register!
-                    </Link>
-                    <Link to="/password/reset/start">
-                        Forgot your password? Click here to reset!
-                    </Link>
+                    </Link> */}
+                    <p>
+                        Don't have an account yet?
+                        <Link to="/"> Click here </Link>to register!
+                    </p>
+
+                    <p>
+                        Forgot your password?
+                        <Link to="/password/reset/start"> Click here </Link> to
+                        reset
+                    </p>
+
                     {this.state.error && (
                         <p>The email and password are not matching</p>
                     )}
