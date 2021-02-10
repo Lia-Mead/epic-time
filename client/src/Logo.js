@@ -1,3 +1,3 @@
-// export default function Logo() {
-//     return <img className="logo-welcome" src="logo-green.svg" alt="logo" />;
-// }
+export default function Logo() {
+    return <img className="logo" src="logo-dark.svg" alt="logo" />;
+}
