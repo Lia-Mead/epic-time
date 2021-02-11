@@ -3,6 +3,28 @@
     margin: 0;
 }
 
+.border-green {
+    border: 5px green solid;
+}
+.border-orange {
+    border: 5px orange solid;
+}
+.border-acqua {
+    border: 5px aquamarine solid;
+}
+.border-purple {
+    border: 5px purple solid;
+}
+.border-pink {
+    border: 5px pink solid;
+}
+.border-flamingo {
+    border: 5px rgb(194, 92, 92) solid;
+}
+.border-blue {
+    border: 5px blue solid;
+}
+
 body {
     background-color: ghostwhite;
     font-family: "Montserrat", sans-serif;
@@ -13,7 +35,7 @@ body {
 header {
     background-color: #ffffff;
     /* background-color: #ad94da; */
-    height: 60px;
+    height: 80px;
     box-shadow: 0px 16px 8px rgb(132 128 128 / 8%);
 }
 
@@ -55,11 +77,12 @@ hr {
     border: 1px darkgray dashed;
 } */
 
-/* .main-con {
+.main-con {
     display: flex;
-    justify-content: center;
-    height: calc(100vh - 60px);
-} */
+    height: calc(100vh - 80px);
+    flex-direction: column;
+    align-items: center;
+}
 
 .center-box {
     display: flex;
@@ -91,8 +114,8 @@ hr {
 }
 
 .logo {
-    width: 217px;
-    padding: 17px;
+    width: 300px;
+    padding: 22px;
 }
 
 .logo-welcome {
@@ -146,6 +169,13 @@ input:-webkit-autofill {
     opacity: 1; /* Firefox */
 }
 
+.input-file {
+    border-bottom: none !important;
+    width: 330px !important;
+    font-size: 25px;
+    margin: 0;
+}
+
 .btn {
     padding: 10px 14px;
     min-width: 140px;
@@ -163,6 +193,47 @@ input:-webkit-autofill {
     background-color: #6ed4c3;
     border: 1px solid #00af91;
     transition: all 0.3s;
+}
+
+.btn:focus,
+.btn:active {
+    outline: none;
+}
+
+.profile-pic {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 50px;
+}
+
+.profile-pic.small {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 50px;
+}
+
+.profile-pic img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.camera-icon {
+    width: 60px;
+}
+
+.uploader {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
 }
 
 @media only screen and (max-width: 600px) {

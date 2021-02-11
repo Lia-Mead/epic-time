@@ -1,11 +1,11 @@
 import ReactDOM from "react-dom";
 import Welcome from "./Welcome.js";
-import Header from "./Header";
+import App from "./App";
 
 let elem;
 if (location.pathname === "/welcome") {
     elem = <Welcome />;
 } else {
-    elem = <Header />;
+    elem = <App />;
 }
 ReactDOM.render(elem, document.querySelector("main"));

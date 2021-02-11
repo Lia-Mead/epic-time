@@ -8,6 +8,9 @@ const csurf = require("csurf");
 const { sendEmail } = require("./ses");
 const cookieSession = require("cookie-session");
 const cryptoRandomString = require("crypto-random-string");
+const { uploader } = require("./upload");
+const s3 = require("./s3");
+const config = require("./config");
 
 let cookie_sec;
 
@@ -77,22 +80,6 @@ app.post("/password/reset/start", (req, res) => {
             console.log("err in login data", err);
             res.json({ success: false });
         });
-    // this runs when the user enters their email in ResetPassword
-    // 1. verift the email the user entered actually exists in users
-    // 2. send the email to that user if their email is valid
-    // - generate a secret code and send it to user
-    // - we're also gonna store the secret code somewhere
-    // how to verify the email address
-    // query the users tabble to see if teh email exists in it
-    // scret code stuff
-
-    // we need a new table for the secret code
-
-    // use send email to send an email to this user
-    // when calling sendEmail, ermemeber to pass it the email of the recipient
-    // secret code, and subject of email
-    // 1. everythign went well
-    // 2. sth went wrong
 });
 
 app.post("/password/reset/verify", (req, res) => {
@@ -102,7 +89,7 @@ app.post("/password/reset/verify", (req, res) => {
 
     db.verifyCode(code)
         .then(({ rows }) => {
-            console.log("rows in verifyCode", rows);
+            // console.log("rows in verifyCode", rows);
             const emailCode = rows[0].email;
             // console.log("email", emailCode);
 
@@ -128,28 +115,7 @@ app.post("/password/reset/verify", (req, res) => {
             console.log(err, "error in verifyCode");
             res.json({ success: false });
         });
-    // 1. go to reset_code and retrieve the code stores there for the user
-    //SELECT * FROM my_table
-    // WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes';
-    // if expired
-    // if not expired
-    // match
-    // don't match
 });
-
-// app.post("/some-route", (req, res) => {
-//     sendEmail(
-//         "meadowsliat@gmail.com",
-//         "123564573",
-//         "Here is your reset password code"
-//     )
-//         .then(() => {
-//             console.log("yay");
-//         })
-//         .catch((err) => {
-//             console.log("error in reset password", err);
-//         });
-// });
 
 app.get("/welcome", function (req, res) {
     // if u dont have the cookiesession middleware this code will not work
@@ -160,29 +126,54 @@ app.get("/welcome", function (req, res) {
     }
 });
 
-app.post("/registration", function (req, res) {
-    // console.log("post in registration");
+app.post("/registration", async (req, res) => {
     const { first, last, email, password } = req.body;
     if (first && last && email && password) {
-        hash(password).then((hashedPw) => {
-            db.insertUserData(first, last, email, hashedPw)
-                .then(({ rows }) => {
-                    // console.log("rows in register: ", rows);
-                    req.session.userId = rows[0].id;
-                    // console.log("cookie thing", rows[0].id);
-                    // console.log("data: rows position 0", rows[0]);
-                    res.json({ success: true, data: rows[0] });
-                })
-                .catch((err) => {
-                    console.log("error in db insert reg data", err);
-                    res.json({ success: false });
-                });
-        });
+        try {
+            const hashedPw = await hash(password);
+            const results = await db.insertUserData(
+                first,
+                last,
+                email,
+                hashedPw
+            );
+            req.session.userId = results.rows[0].id;
+            res.json({ success: true });
+        } catch (err) {
+            console.log("err in POST registration", err);
+            res.json({ success: false });
+            //error.message gives only the message from error and not the whole block
+            //error.code
+        }
     } else {
-        console.log("please fill out all fields");
         res.json({ success: false });
+        // please fill out all fields error
     }
 });
+
+// app.post("/registration", function (req, res) {
+//     // console.log("post in registration");
+//     const { first, last, email, password } = req.body;
+//     if (first && last && email && password) {
+//         hash(password).then((hashedPw) => {
+//             db.insertUserData(first, last, email, hashedPw)
+//                 .then(({ rows }) => {
+//                     // console.log("rows in register: ", rows);
+//                     req.session.userId = rows[0].id;
+//                     // console.log("cookie thing", rows[0].id);
+//                     // console.log("data: rows position 0", rows[0]);
+//                     res.json({ success: true, data: rows[0] });
+//                 })
+//                 .catch((err) => {
+//                     console.log("error in db insert reg data", err);
+//                     res.json({ success: false });
+//                 });
+//         });
+//     } else {
+//         console.log("please fill out all fields");
+//         res.json({ success: false });
+//     }
+// });
 
 app.post("/login", function (req, res) {
     // console.log("log in");
@@ -217,13 +208,44 @@ app.get("/logout", (req, res) => {
     res.redirect("/");
 });
 
+app.get("/user", (req, res) => {
+    // console.log("req.session.userId", req.session.userId);
+    db.fetchUsersData(req.session.userId)
+        .then(({ rows }) => {
+            // console.log("get user rows in 0", rows[0]);
+            res.json({ success: true, rows: rows[0] });
+        })
+        .catch((err) => {
+            console.log(err, "error in fetchUsersData");
+        });
+});
+
+app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
+    console.log("I am profile-pic");
+    const { filename } = req.file;
+    const fullUrl = config.s3Url + filename;
+    // console.log("req.session.userId in PROFILE PIC", req.session.userId);
+
+    if (req.file) {
+        db.insertPic(req.session.userId, fullUrl)
+            .then(({ rows }) => {
+                // console.log("rows in insertPic", rows);
+                console.log("full URL", rows[0].profile_pic_url);
+                res.json({ success: true, data: rows[0].profile_pic_url });
+            })
+            .catch((err) => {
+                console.log("error in insertPic", err);
+            });
+    } else {
+        res.json({ success: false });
+    }
+});
+
+/// NEVER MOVE THIS !!!!!!!!!!!!
 app.get("*", function (req, res) {
     if (!req.session.userId) {
-        // if user not logged in redirect to welcome
         res.redirect("/welcome");
     } else {
-        // if user logged in send over the html
-        // once the client has the HTML start.js will render the <p>
         res.sendFile(path.join(__dirname, "..", "client", "index.html"));
     }
 });

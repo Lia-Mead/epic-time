@@ -6,5 +6,7 @@ DROP TABLE IF EXISTS users;
       last VARCHAR(255) NOT NULL,
       email VARCHAR(255) NOT NULL UNIQUE,
       password VARCHAR(255) NOT NULL,
+      bio VARCHAR(255) DEFAULT NULL,
+      profile_pic_url VARCHAR DEFAULT NULL,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );

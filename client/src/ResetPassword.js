@@ -86,6 +86,7 @@ export default class ResetPassword extends React.Component {
                         name="code"
                         type="text"
                         placeholder="Code"
+                        key={1}
                     ></input>
                     <p>Please enter a new password</p>
 

@@ -1,9 +1,21 @@
-export function ProfilePic(props) {
+export default function ProfilePic({
+    first,
+    last,
+    profilePicUrl,
+    toggleUploader,
+    size = "",
+}) {
+    // let { first, last, profilePicUrl, toggleUploader } = props;
+
+    // const imgUrl = profilePicUrl || "/images/avatar.svg";
+
     return (
-        <div onClick={props.toggleUploader} className="profile-pic">
+        <div className="profile-pic">
             <img
-                src={props.profilePicUrl || "default.png"}
-                alt={`$props.firstName`}
+                src={profilePicUrl || "/images/avatar.svg"}
+                alt={`${first} ${last}`}
+                className={`${size} profile-pic border-blue`}
+                onClick={toggleUploader}
             />
         </div>
     );
