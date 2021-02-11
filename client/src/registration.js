@@ -42,8 +42,6 @@ export default class Registration extends React.Component {
 
     handleClick() {
         // console.log("click!");
-        // 1.. send the user's input off to the server (in a POST)
-        // remaining tasks: make the red underlines go away
         axios
             .post("/registration", this.state)
             .then((resp) => {
@@ -53,18 +51,13 @@ export default class Registration extends React.Component {
                     this.setState({
                         error: true,
                     });
-                    // e.g. user forgot to fill a field
-                    // then render an error message
-                    // handle error - message render
                 } else {
-                    // if successful redirextc user to the '/' route
                     location.replace("/");
                 }
             })
             .catch((err) => {
                 console.log("err in registration: ", err);
             });
-        // how to conditionally render an error message
     }
 
     render() {

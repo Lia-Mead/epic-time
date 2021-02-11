@@ -1,7 +1,7 @@
 import { Component } from "react";
 // import Logo from "./Logo";
 import Header from "./Header";
-import ProfilePic from "./ProfilePic";
+// import ProfilePic from "./ProfilePic";
 import Uploader from "./Uploader";
 import Profile from "./Profile";
 import axios from "./Axios";
@@ -22,6 +22,7 @@ export default class App extends Component {
                     id: resp.data.rows.id,
                     first: resp.data.rows.first,
                     last: resp.data.rows.last,
+                    bio: resp.data.rows.bio,
                     profilePicUrl: resp.data.rows.profile_pic_url,
                 });
             })
@@ -59,43 +60,31 @@ export default class App extends Component {
         }
         return (
             <div className="app border-pink">
-                <Header />
+                <Header
+                    first={this.state.first}
+                    last={this.state.last}
+                    profilePicUrl={this.state.profilePicUrl}
+                    toggleUploader={() => this.toggleUploader()}
+                    uploaderVisible={this.state.uploaderVisible}
+                    size="small"
+                />
 
-                <div className="main-con">
-                    <ProfilePic
-                        first={this.state.first}
-                        last={this.state.last}
-                        profilePicUrl={this.state.profilePicUrl}
-                        toggleUploader={() => this.toggleUploader()}
-                        uploaderVisible={this.state.uploaderVisible}
-                        size="small"
+                {this.state.uploaderVisible && (
+                    <Uploader
+                        setProfilePicUrl={(profilePicUrl) =>
+                            this.setProfilePicUrl(profilePicUrl)
+                        }
                     />
+                )}
 
-                    <Profile
-                        first={this.state.first}
-                        last={this.state.last}
-                        sayHello={this.sayHello}
-                        profilePicUrl={this.state.profilePicUrl}
-                    />
-                    <a onClick={() => this.toggleUploader()}>
-                        <img className="camera-icon" src="/images/camera.svg" />
-                    </a>
-
-                    {this.state.uploaderVisible && (
-                        <Uploader
-                            setProfilePicUrl={(profilePicUrl) =>
-                                this.setProfilePicUrl(profilePicUrl)
-                            }
-                        />
-                    )}
-                </div>
+                <Profile
+                    first={this.state.first}
+                    last={this.state.last}
+                    sayHello={this.sayHello}
+                    profilePicUrl={this.state.profilePicUrl}
+                    bio={this.state.bio}
+                />
             </div>
         );
     }
-}
-
-{
-    /* <button onClick={() => this.toggleUploader()}>
-                    Edit Image
-                </button> */
 }

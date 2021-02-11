@@ -1,42 +1,88 @@
 import React from "react";
-// import axios from "./Axios";
+import axios from "./Axios";
 
 export default class BioEditor extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             editingMode: false,
+            error: false,
+            renderView: 1,
+            bio: this.props.bio,
         };
     }
 
-    textHandleChange() {
+    toggleEdit() {
         this.setState({
             editingMode: !this.state.editingMode,
             // editingMode: true,
         });
     }
 
+    handleChange(e) {
+        // console.log("e target value", e.target.value);
+        // console.log("e target name", e.target.name);
+        this.setState({
+            [e.target.name]: e.target.value,
+        });
+    }
+
+    bioHandleClick(e) {
+        e.preventDefault();
+        axios
+            .post("/bio", this.state)
+            .then((resp) => {
+                console.log("response from server", resp);
+                this.setState({
+                    bio: resp.data.bio,
+                    editingMode: false,
+                });
+            })
+            .catch((err) => {
+                console.log("err in axios post bio: ", err);
+                this.setState({
+                    error: true,
+                });
+            });
+    }
+
     render() {
-        console.log("this props in bio editor: ", this.props); // undefined
+        // console.log("this props in bio editor: ", this.props);
         if (this.state.editingMode) {
             return (
-                <div>
-                    <h1>EDIT MODE!!!</h1>
-                    <textarea defaultValue="This is the bio from this.props" />
-                    <button>Save bio</button>
+                <div className="bio-editor">
+                    <h2>You are da bomb, I wanna hear all about ya</h2>{" "}
+                    <textarea
+                        name="bio"
+                        defaultValue={this.state.bio || "I am a fox"}
+                        onChange={(e) => this.handleChange(e)}
+                    />
+                    <button
+                        className="btn user"
+                        onClick={(e) => this.bioHandleClick(e)}
+                    >
+                        Save bio
+                    </button>
                 </div>
             );
         }
         return (
-            <div className="border-acqua">
-                <h1>I am the bio editor</h1>
-                <p>this will be the users bio that we get from props</p>
-                <button onClick={() => this.textHandleChange()}>
-                    Click me! Edit bio
+            <div className="bio-editor border-acqua">
+                <h2>Say something groovy about yourself</h2>
+                <p>{this.state.bio}</p>
+
+                <button className="btn user" onClick={() => this.toggleEdit()}>
+                    {this.state.bio ? "Edit bio" : "Add bio"}
                 </button>
+
+                {this.state.error && <p>Oops, something went wrong</p>}
             </div>
         );
     }
 }
 
-// <button onClick={() => this.props.sayHello()}>Click me! Edit bio</button>;
+{
+    /* <a onClick={() => this.toggleUploader()}>
+    <img className="icon" src="/images/edit.svg" />
+</a>; */
+}

@@ -28,22 +28,23 @@
 body {
     background-color: ghostwhite;
     font-family: "Montserrat", sans-serif;
-    width: 100vw;
-    height: 100vh;
+    font-size: 24px;
 }
 
 header {
-    background-color: #ffffff;
-    /* background-color: #ad94da; */
-    height: 80px;
+    /* background-color: #ffffff; */
+    background-color: #262323;
     box-shadow: 0px 16px 8px rgb(132 128 128 / 8%);
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
 }
 
 h1 {
-    /* color: darkgray; */
     color: #5ab1a9;
     text-align: center;
     margin: 40px 30px 0px;
+    font-size: 1.9em;
 }
 
 h2 {
@@ -52,7 +53,14 @@ h2 {
     font-family: "Space Mono";
     text-align: center;
     font-weight: 100;
-    margin: 20px;
+    margin: 20px 0;
+    font-size: 1.5em;
+}
+
+h3 {
+    color: #56568e;
+    font-family: "Space Mono";
+    margin: 20px 0;
 }
 
 a {
@@ -69,20 +77,14 @@ a:hover {
 
 p {
     margin: 10px 0;
+    font-size: 24px;
 }
 
-/* 
-hr {
-    width: 100%;
-    border: 1px darkgray dashed;
-} */
-
-.main-con {
+/* .main-con {
     display: flex;
-    height: calc(100vh - 80px);
     flex-direction: column;
     align-items: center;
-}
+} */
 
 .center-box {
     display: flex;
@@ -90,10 +92,10 @@ hr {
     width: 100%;
 }
 
-.con {
+.welcome {
     display: flex;
     justify-content: center;
-    height: calc(100vh - 60px);
+    height: 100vh;
 }
 
 .intro {
@@ -118,17 +120,26 @@ hr {
     padding: 22px;
 }
 
-.logo-welcome {
-    width: 220px;
-    padding: 16px;
-    margin-left: 20px;
-}
-
 .reg-form {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+}
+
+textarea {
+    margin: 0px;
+    max-width: 800px;
+    min-width: 400px;
+    min-height: 200px;
+    height: 222px;
+    width: 600px;
+    font-size: 24px;
+    padding: 20px 10px;
+    font-family: "Montserrat";
+    color: purple;
+    background: content-box;
+    border-radius: 20px;
 }
 
 input {
@@ -171,22 +182,23 @@ input:-webkit-autofill {
 
 .input-file {
     border-bottom: none !important;
-    width: 330px !important;
+    min-width: 330px !important;
     font-size: 25px;
     margin: 0;
 }
 
 .btn {
     padding: 10px 14px;
-    min-width: 140px;
+    min-width: 160px;
+    max-width: 40%;
     border-radius: 40px;
     background-color: #5ab1a9;
     border: 1px solid #00af91;
     font-family: "Space Mono", monospace;
-    font-size: 18px;
     margin: 30px 20px;
     cursor: pointer;
     box-shadow: 0px 0px 0px #fff;
+    font-size: 24px;
 }
 
 .btn:hover {
@@ -200,22 +212,37 @@ input:-webkit-autofill {
     outline: none;
 }
 
+.btn.user {
+    border-radius: 40px;
+    background-color: #d4f2ef;
+    border: 1px solid #00af91;
+
+    margin: 30px 0px;
+    /* align-self: flex-end; */
+}
+/* Components*/
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .profile-pic {
     width: 300px;
     height: 300px;
-    position: relative;
-    overflow: hidden;
     border-radius: 50%;
     margin: 50px;
+    object-fit: cover;
 }
 
 .profile-pic.small {
     width: 100px;
     height: 100px;
-    position: relative;
-    overflow: hidden;
     border-radius: 50%;
-    margin: 50px;
+    margin: 0px;
+    cursor: pointer;
+    padding: 12px;
 }
 
 .profile-pic img {
@@ -224,20 +251,40 @@ input:-webkit-autofill {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border: 1px solid white;
 }
 
-.camera-icon {
+.icon {
     width: 60px;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
 }
 
 .uploader {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+        360deg,
+        rgb(192 192 192) 0%,
+        rgba(212, 242, 239, 1) 100%
+    );
+}
+
+.bio-editor {
+    display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    align-items: center;
 }
 
 @media only screen and (max-width: 600px) {
-    .con {
+    .welcome {
         flex-direction: column;
     }
 
@@ -252,5 +299,12 @@ input:-webkit-autofill {
     .btn {
         width: 80%;
         padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.7em;
+    }
+    h2 {
+        font-size: 1.3em;
     }
 }

@@ -231,7 +231,7 @@ app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
             .then(({ rows }) => {
                 // console.log("rows in insertPic", rows);
                 console.log("full URL", rows[0].profile_pic_url);
-                res.json({ success: true, data: rows[0].profile_pic_url });
+                res.json({ success: true, rows: rows[0].profile_pic_url });
             })
             .catch((err) => {
                 console.log("error in insertPic", err);
@@ -239,6 +239,20 @@ app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
     } else {
         res.json({ success: false });
     }
+});
+
+app.post("/bio", (req, res) => {
+    // console.log("I am the bio");
+    const { bio } = req.body;
+    db.editBio(req.session.userId, bio)
+        .then(({ rows }) => {
+            // console.log("edit bio rows", rows[0].bio);
+            res.json({ success: true, bio: rows[0].bio });
+        })
+        .catch((err) => {
+            console.log("error in editBio", err);
+            res.json({ success: false });
+        });
 });
 
 /// NEVER MOVE THIS !!!!!!!!!!!!

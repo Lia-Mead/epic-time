@@ -29,8 +29,8 @@ export default class Uploader extends Component {
             .then((resp) => {
                 // formData.append("file", this.file);
                 console.log("response from profile-pic", resp);
-                console.log("resp.data.data"), resp.data.data;
-                this.props.setProfilePicUrl(resp.data.data);
+                console.log("resp.data.data"), resp.data.rows;
+                this.props.setProfilePicUrl(resp.data.rows);
             })
             .catch((err) => {
                 console.log("error in POST upload pic submit", err);
@@ -40,7 +40,7 @@ export default class Uploader extends Component {
     render() {
         console.log("this.props in uploader", this.props);
         return (
-            <div className="uploader border-orange">
+            <div className="uploader">
                 <input
                     className="input-file"
                     onChange={(e) => {

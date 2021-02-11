@@ -2,14 +2,14 @@ import { HashRouter, Route } from "react-router-dom";
 import Registration from "./Registration";
 import Login from "./Login";
 import ResetPassword from "./ResetPassword";
-import Header from "./Header";
+import Logo from "./Logo";
 
 export default function Welcome() {
     return (
         <>
-            <Header />
-            <div className="con">
+            <div className="welcome">
                 <div className="intro">
+                    <Logo />
                     <h1>Welcome to Epic Time</h1>
                     <h2>The Social nostalgia network</h2>
                     <p>
