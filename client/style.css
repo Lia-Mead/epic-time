@@ -80,11 +80,38 @@ p {
     font-size: 24px;
 }
 
-/* .main-con {
+.menu-right {
     display: flex;
-    flex-direction: column;
     align-items: center;
-} */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    align-content: flex-end;
+    justify-content: flex-end;
+    margin: 10px;
+}
+nav ul li {
+    list-style-type: none;
+}
+
+nav ul li a {
+    margin: 20px;
+}
+
+.giphy-embed {
+    margin-top: 40px;
+}
+
+.error {
+    margin: 20px 0;
+    color: #dc28fb;
+}
 
 .center-box {
     display: flex;
@@ -125,6 +152,7 @@ p {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 textarea {
@@ -137,13 +165,13 @@ textarea {
     font-size: 24px;
     padding: 20px 10px;
     font-family: "Montserrat";
-    color: purple;
+    color: #00af91;
     background: content-box;
     border-radius: 20px;
 }
 
 input {
-    width: 300px;
+    width: 350px;
     font-size: 1em;
     padding: 13px 11px;
     margin: 5px 20px;
@@ -185,12 +213,12 @@ input:-webkit-autofill {
     min-width: 330px !important;
     font-size: 25px;
     margin: 0;
+    color: black;
 }
 
 .btn {
     padding: 10px 14px;
     min-width: 160px;
-    max-width: 40%;
     border-radius: 40px;
     background-color: #5ab1a9;
     border: 1px solid #00af91;
@@ -220,6 +248,11 @@ input:-webkit-autofill {
     margin: 30px 0px;
     /* align-self: flex-end; */
 }
+
+.btn.user:hover {
+    background-color: #6ed4c3;
+}
+
 /* Components*/
 
 .profile {
@@ -272,12 +305,12 @@ input:-webkit-autofill {
     background: rgb(2, 0, 36);
     background: linear-gradient(
         360deg,
-        rgb(192 192 192) 0%,
-        rgba(212, 242, 239, 1) 100%
+        rgb(161 116 242) 0%,
+        rgb(213 193 229) 100%
     );
 }
 
-.bio-editor {
+.bio {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -286,10 +319,16 @@ input:-webkit-autofill {
 @media only screen and (max-width: 600px) {
     .welcome {
         flex-direction: column;
+        height: auto;
     }
 
     .intro {
         height: 100%;
+    }
+
+    .intro > p {
+        width: 90%;
+        margin-bottom: 70px;
     }
 
     .center-box {
@@ -298,7 +337,7 @@ input:-webkit-autofill {
 
     .btn {
         width: 80%;
-        padding: 20px;
+        padding: 10px 20px;
     }
 
     h1 {
@@ -306,5 +345,11 @@ input:-webkit-autofill {
     }
     h2 {
         font-size: 1.3em;
+        margin-top: 50px;
+    }
+
+    p {
+        width: 90%;
+        font-size: 0.9em;
     }
 }

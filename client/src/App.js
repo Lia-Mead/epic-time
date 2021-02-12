@@ -4,7 +4,9 @@ import Header from "./Header";
 // import ProfilePic from "./ProfilePic";
 import Uploader from "./Uploader";
 import Profile from "./Profile";
+import OtherProfile from "./OtherProfile";
 import axios from "./Axios";
+import { BrowserRouter, Route } from "react-router-dom";
 
 export default class App extends Component {
     constructor(props) {
@@ -15,7 +17,7 @@ export default class App extends Component {
     componentDidMount() {
         console.log("APP MOUNTED");
         axios
-            .get("/user")
+            .get("/user.json")
             .then((resp) => {
                 console.log("response success user.data", resp.data.rows);
                 this.setState({
@@ -23,7 +25,7 @@ export default class App extends Component {
                     first: resp.data.rows.first,
                     last: resp.data.rows.last,
                     bio: resp.data.rows.bio,
-                    profilePicUrl: resp.data.rows.profile_pic_url,
+                    profilePicUrl: resp.data.rows.image,
                 });
             })
             .catch((err) => {
@@ -44,9 +46,9 @@ export default class App extends Component {
         });
     }
 
-    sayHello() {
-        console.log("i am saying hello from app");
-    }
+    // sayHello() {
+    //     console.log("i am saying hello from app");
+    // }
 
     render() {
         console.log("this.state in app: ", this.state);
@@ -59,32 +61,58 @@ export default class App extends Component {
             // );
         }
         return (
-            <div className="app border-pink">
-                <Header
-                    first={this.state.first}
-                    last={this.state.last}
-                    profilePicUrl={this.state.profilePicUrl}
-                    toggleUploader={() => this.toggleUploader()}
-                    uploaderVisible={this.state.uploaderVisible}
-                    size="small"
-                />
-
-                {this.state.uploaderVisible && (
-                    <Uploader
-                        setProfilePicUrl={(profilePicUrl) =>
-                            this.setProfilePicUrl(profilePicUrl)
-                        }
+            <BrowserRouter>
+                <div className="app border-pink">
+                    <Header
+                        first={this.state.first}
+                        last={this.state.last}
+                        profilePicUrl={this.state.profilePicUrl}
+                        toggleUploader={() => this.toggleUploader()}
+                        uploaderVisible={this.state.uploaderVisible}
+                        size="small"
                     />
-                )}
 
-                <Profile
-                    first={this.state.first}
-                    last={this.state.last}
-                    sayHello={this.sayHello}
-                    profilePicUrl={this.state.profilePicUrl}
-                    bio={this.state.bio}
-                />
-            </div>
+                    {this.state.uploaderVisible && (
+                        <Uploader
+                            setProfilePicUrl={(profilePicUrl) =>
+                                this.setProfilePicUrl(profilePicUrl)
+                            }
+                        />
+                    )}
+
+                    <Route
+                        exact
+                        path="/"
+                        render={() => (
+                            <Profile
+                                id={this.state.id}
+                                first={this.state.first}
+                                last={this.state.last}
+                                profilePicUrl={this.state.profilePicUrl}
+                                bio={this.state.bio}
+                            />
+                        )}
+                    />
+
+                    <Route
+                        path="/user/:id"
+                        render={(props) => (
+                            <OtherProfile
+                                key={props.match.url}
+                                match={props.match} // must be passed down when we work with match
+                                history={props.history}
+                            />
+                        )}
+                    />
+                </div>
+            </BrowserRouter>
         );
     }
 }
+
+// component = { OtherProfile };
+
+{
+    /* <Route exact path="/" component={Profile} />; */
+}
+// if u pass props down u have to use arrow witout render

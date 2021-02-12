@@ -3,7 +3,7 @@ import BioEditor from "./BioEditor";
 
 export default function Profile(props) {
     console.log("props in profile", props);
-    const { first, last, profilePicUrl, bio, sayHello, toggleUploader } = props;
+    const { id, first, last, profilePicUrl, bio, toggleUploader } = props;
     return (
         <div className="profile border-green">
             <h1>
@@ -11,6 +11,7 @@ export default function Profile(props) {
             </h1>
             <div className="profile-pic">
                 <ProfilePic
+                    id={id}
                     first={first}
                     last={last}
                     profilePicUrl={profilePicUrl}
@@ -18,7 +19,7 @@ export default function Profile(props) {
                 />
             </div>
 
-            <BioEditor bio={bio} sayHello={sayHello} />
+            <BioEditor bio={bio} />
         </div>
     );
 }

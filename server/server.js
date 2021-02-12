@@ -83,37 +83,37 @@ app.post("/password/reset/start", (req, res) => {
 });
 
 app.post("/password/reset/verify", (req, res) => {
-    console.log("verify password");
-
+    console.log("I am the /password/reset/verify route");
     const { code, password } = req.body;
-
     db.verifyCode(code)
         .then(({ rows }) => {
-            // console.log("rows in verifyCode", rows);
             const emailCode = rows[0].email;
-            // console.log("email", emailCode);
-
+            // const codeDB = rows[0].code;
             let currentCode = rows.find((row) => {
                 return row.code === req.body.code;
             });
-            // console.log("rows[0].code"), rows[0].code;
-            // console.log("req.bodycode"), req.body.code;
             if (currentCode) {
-                hash(password).then((hashedPw) => {
-                    db.updatePassword(emailCode, hashedPw)
-                        .then(() => {
-                            res.json({ success: true });
-                        })
-                        .catch((err) => {
-                            console.log("error in db updatePassword", err);
-                            res.json({ success: false });
-                        });
-                });
+                hash(password)
+                    .then((hashedPw) => {
+                        db.updatePassword(emailCode, hashedPw)
+                            .then(() => {
+                                // console.log("rows: ", rows);
+                                res.json({ success: true });
+                            })
+                            .catch((err) => {
+                                console.log("error in insert user data", err);
+                                res.json({ success: false });
+                            });
+                    })
+                    .catch((err) => {
+                        console.log("error in hashing pass: ", err);
+                    });
+            } else {
+                res.json({ success: false });
             }
         })
         .catch((err) => {
-            console.log(err, "error in verifyCode");
-            res.json({ success: false });
+            console.log("There was an error with verifying code: ", err);
         });
 });
 
@@ -142,8 +142,6 @@ app.post("/registration", async (req, res) => {
         } catch (err) {
             console.log("err in POST registration", err);
             res.json({ success: false });
-            //error.message gives only the message from error and not the whole block
-            //error.code
         }
     } else {
         res.json({ success: false });
@@ -152,16 +150,12 @@ app.post("/registration", async (req, res) => {
 });
 
 // app.post("/registration", function (req, res) {
-//     // console.log("post in registration");
 //     const { first, last, email, password } = req.body;
 //     if (first && last && email && password) {
 //         hash(password).then((hashedPw) => {
 //             db.insertUserData(first, last, email, hashedPw)
 //                 .then(({ rows }) => {
-//                     // console.log("rows in register: ", rows);
 //                     req.session.userId = rows[0].id;
-//                     // console.log("cookie thing", rows[0].id);
-//                     // console.log("data: rows position 0", rows[0]);
 //                     res.json({ success: true, data: rows[0] });
 //                 })
 //                 .catch((err) => {
@@ -208,15 +202,44 @@ app.get("/logout", (req, res) => {
     res.redirect("/");
 });
 
-app.get("/user", (req, res) => {
+app.get("/user.json", (req, res) => {
     // console.log("req.session.userId", req.session.userId);
-    db.fetchUsersData(req.session.userId)
+    db.getProfile(req.session.userId)
         .then(({ rows }) => {
             // console.log("get user rows in 0", rows[0]);
             res.json({ success: true, rows: rows[0] });
         })
         .catch((err) => {
-            console.log(err, "error in fetchUsersData");
+            console.log(err, "error in getProfile");
+            res.json({ success: false });
+        });
+});
+
+app.get("/show-users/:userId", (req, res) => {
+    // console.log("dynamic user id route");
+    const { userId } = req.params;
+    // console.log("userId: ", userId);
+    // console.log("cookie: ", req.session.userId);
+    // console.log("match check: ", req.session.userId == userId);
+
+    // if (req.session.userId == userId) {
+    //     return res.json({ myUser: true });
+    // }
+
+    db.getProfile(userId)
+        .then(({ rows }) => {
+            // console.log("get user rows in 0", rows[0]);
+            // is userid same as session id
+            res.json({
+                success: true,
+                rows: rows[0],
+                cookie: req.session.userId,
+            });
+            // res.json({ success: true, rows: rows[0] });
+        })
+        .catch((err) => {
+            console.log(err, "error in dymaic getProfile");
+            res.json({ success: false });
         });
 });
 
@@ -229,9 +252,8 @@ app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
     if (req.file) {
         db.insertPic(req.session.userId, fullUrl)
             .then(({ rows }) => {
-                // console.log("rows in insertPic", rows);
-                console.log("full URL", rows[0].profile_pic_url);
-                res.json({ success: true, rows: rows[0].profile_pic_url });
+                // console.log("full URL", rows[0].image);
+                res.json({ success: true, rows: rows[0].image });
             })
             .catch((err) => {
                 console.log("error in insertPic", err);

@@ -50,7 +50,7 @@ export default class BioEditor extends React.Component {
         // console.log("this props in bio editor: ", this.props);
         if (this.state.editingMode) {
             return (
-                <div className="bio-editor">
+                <div className="bio">
                     <h2>You are da bomb, I wanna hear all about ya</h2>{" "}
                     <textarea
                         name="bio"
@@ -67,8 +67,8 @@ export default class BioEditor extends React.Component {
             );
         }
         return (
-            <div className="bio-editor border-acqua">
-                <h2>Say something groovy about yourself</h2>
+            <div className="bio border-acqua">
+                <h2>Something groovy about myself</h2>
                 <p>{this.state.bio}</p>
 
                 <button className="btn user" onClick={() => this.toggleEdit()}>
@@ -79,10 +79,4 @@ export default class BioEditor extends React.Component {
             </div>
         );
     }
-}
-
-{
-    /* <a onClick={() => this.toggleUploader()}>
-    <img className="icon" src="/images/edit.svg" />
-</a>; */
 }

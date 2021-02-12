@@ -46,18 +46,26 @@ export default class Login extends React.Component {
                     <input
                         onChange={(e) => this.handleChange(e)}
                         name="email"
-                        type="text"
+                        type="email"
                         placeholder="Email"
+                        autoComplete="off"
                     ></input>
                     <input
                         onChange={(e) => this.handleChange(e)}
                         name="password"
-                        type="text"
+                        type="password"
                         placeholder="Password"
+                        autoComplete="off"
                     ></input>
                     <button className="btn" onClick={() => this.handleClick()}>
                         Log in
                     </button>
+
+                    {this.state.error && (
+                        <p className="error">
+                            The email and password are not matching 🟣
+                        </p>
+                    )}
 
                     <p>
                         Don't have an account yet?
@@ -69,10 +77,6 @@ export default class Login extends React.Component {
                         <Link to="/password/reset/start"> Click here </Link> to
                         reset
                     </p>
-
-                    {this.state.error && (
-                        <p>The email and password are not matching</p>
-                    )}
                 </div>
             </div>
         );

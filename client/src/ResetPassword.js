@@ -28,14 +28,7 @@ export default class ResetPassword extends React.Component {
             "/password/reset/verify",
             "/password/reset/verify",
         ];
-        // let url;
-        // if (this.state.renderView === 1) {
-        //     url = "/password/reset/start";
-        // } else if (this.state.renderView === 2) {
-        //     url = "/password/reset/verify";
-        // } else if (this.state.renderView === 3) {
-        //     url = "/password/reset/verify";
-        // }
+
         axios
             // .post(url, this.state)
             .post(route[this.state.renderView], this.state)
@@ -68,8 +61,9 @@ export default class ResetPassword extends React.Component {
                     <input
                         onChange={(e) => this.handleChange(e)}
                         name="email"
-                        type="text"
+                        type="email"
                         placeholder="Email"
+                        autoComplete="off"
                     ></input>
                     <button className="btn" onClick={() => this.handleClick()}>
                         Reset Password
@@ -87,14 +81,16 @@ export default class ResetPassword extends React.Component {
                         type="text"
                         placeholder="Code"
                         key={1}
+                        autoComplete="off"
                     ></input>
                     <p>Please enter a new password</p>
 
                     <input
                         onChange={(e) => this.handleChange(e)}
                         name="password"
-                        type="text"
+                        type="password"
                         placeholder="Password"
+                        autoComplete="off"
                     ></input>
                     <button className="btn" onClick={() => this.handleClick()}>
                         Confirm
@@ -119,7 +115,10 @@ export default class ResetPassword extends React.Component {
             <div className="center-box">
                 <div className="reg-form">
                     {this.whichView()}
-                    {this.state.error && <p>Oops, something went wrong</p>}
+
+                    {this.state.error && (
+                        <p className="error">Oops, something went wrong</p>
+                    )}
                 </div>
             </div>
         );

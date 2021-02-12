@@ -70,38 +70,43 @@ export default class Registration extends React.Component {
                         name="first"
                         type="text"
                         placeholder="First Name"
+                        autoComplete="off"
                     ></input>
                     <input
                         onChange={(e) => this.handleChange(e)}
                         name="last"
                         type="text"
                         placeholder="Last Name"
+                        autoComplete="off"
                     ></input>
                     <input
                         onChange={(e) => this.handleChange(e)}
                         name="email"
-                        type="text"
+                        type="email"
                         placeholder="Email"
+                        autoComplete="off"
                     ></input>
                     <input
                         onChange={(e) => this.handleChange(e)}
                         name="password"
-                        type="text"
+                        type="password"
                         placeholder="Password"
+                        autoComplete="off"
                     ></input>
                     <button className="btn" onClick={() => this.handleClick()}>
                         Submit
                     </button>
+
+                    {this.state.error && (
+                        <p className="error">
+                            Oops, something went wrong 🟣 Please fill all the
+                            fields.
+                        </p>
+                    )}
                     <p>
                         Already have an account?
                         <Link to="/login"> Click here </Link> to Log in
                     </p>
-
-                    {/* <Link to="/login">
-                        Already have an account? <br />
-                        Click here to Log in!
-                    </Link> */}
-                    {this.state.error && <p>Something broke :(</p>}
                 </div>
             </div>
         );
