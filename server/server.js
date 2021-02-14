@@ -244,7 +244,7 @@ app.get("/show-users/:userId", (req, res) => {
 });
 
 app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
-    console.log("I am profile-pic");
+    // console.log("I am profile-pic");
     const { filename } = req.file;
     const fullUrl = config.s3Url + filename;
     // console.log("req.session.userId in PROFILE PIC", req.session.userId);

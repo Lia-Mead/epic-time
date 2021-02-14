@@ -2,7 +2,7 @@ import ProfilePic from "./ProfilePic";
 import BioEditor from "./BioEditor";
 
 export default function Profile(props) {
-    console.log("props in profile", props);
+    // console.log("props in profile", props);
     const { id, first, last, profilePicUrl, bio, toggleUploader } = props;
     return (
         <div className="profile border-green">
@@ -15,9 +15,15 @@ export default function Profile(props) {
                     first={first}
                     last={last}
                     profilePicUrl={profilePicUrl}
-                    toggleUploader={toggleUploader}
+                    // toggleUploader={toggleUploader}
                 />
             </div>
+
+            <img
+                onClick={toggleUploader}
+                className="icon"
+                src="/images/camera.svg"
+            />
 
             <BioEditor bio={bio} />
         </div>

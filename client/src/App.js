@@ -68,7 +68,6 @@ export default class App extends Component {
                         last={this.state.last}
                         profilePicUrl={this.state.profilePicUrl}
                         toggleUploader={() => this.toggleUploader()}
-                        uploaderVisible={this.state.uploaderVisible}
                         size="small"
                     />
 
@@ -90,6 +89,7 @@ export default class App extends Component {
                                 last={this.state.last}
                                 profilePicUrl={this.state.profilePicUrl}
                                 bio={this.state.bio}
+                                toggleUploader={() => this.toggleUploader()}
                             />
                         )}
                     />

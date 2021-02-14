@@ -289,6 +289,7 @@ input:-webkit-autofill {
 
 .icon {
     width: 60px;
+    cursor: pointer;
 }
 
 .app {
@@ -314,6 +315,7 @@ input:-webkit-autofill {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 70%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -351,5 +353,9 @@ input:-webkit-autofill {
     p {
         width: 90%;
         font-size: 0.9em;
+    }
+
+    .bio {
+        width: 80%;
     }
 }

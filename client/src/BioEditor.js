@@ -51,10 +51,12 @@ export default class BioEditor extends React.Component {
         if (this.state.editingMode) {
             return (
                 <div className="bio">
-                    <h2>You are da bomb, I wanna hear all about ya</h2>{" "}
+                    <h2>You are da bomb, I wanna hear all about ya</h2>
                     <textarea
                         name="bio"
-                        defaultValue={this.state.bio || "I am a fox"}
+                        defaultValue={
+                            this.state.bio ? this.state.bio : "I am a fox"
+                        }
                         onChange={(e) => this.handleChange(e)}
                     />
                     <button
@@ -80,3 +82,6 @@ export default class BioEditor extends React.Component {
         );
     }
 }
+
+// ask whyyyyy
+// defaultValue={this.state.bio || "I am a fox"}

@@ -3,13 +3,13 @@ export default function Menu() {
         <nav>
             <ul>
                 <li>
-                    <a href="/">Edit Profile</a>
+                    <a href="/"></a>
                 </li>
                 <li>
-                    <a href="/">Thanks</a>
+                    <a href="/"></a>
                 </li>
                 <li>
-                    <a href="/">Signers</a>
+                    <a href="/"></a>
                 </li>
 
                 <li>
