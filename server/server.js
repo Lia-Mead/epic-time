@@ -263,6 +263,36 @@ app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
     }
 });
 
+app.get("/users", (req, res) => {
+    db.threeUsers()
+        .then(({ rows }) => {
+            // console.log("here are the last 3 users");
+            // console.log("rows: ", rows);
+            res.json({ rows: rows });
+        })
+        .catch((err) => {
+            console.log("there was an error in getting last 3 ", err);
+        });
+});
+
+app.get("/find/:users", (req, res) => {
+    const user = req.params.users;
+
+    db.getMatchingUsers(user)
+        .then(({ rows }) => {
+            // console.log("rows in find users: ", rows);
+            if (rows.length === 0) {
+                res.json({ success: false, rows: [] });
+            } else {
+                res.json({ success: true, rows: rows });
+            }
+        })
+        .catch((err) => {
+            console.log("there was an error ingetMatchingUsers ", err);
+            res.json({ success: false });
+        });
+});
+
 app.post("/bio", (req, res) => {
     // console.log("I am the bio");
     const { bio } = req.body;

@@ -23,14 +23,6 @@ export default class OtherProfile extends Component {
         axios
             .get(`/show-users/${this.props.match.params.id}`)
             .then((resp) => {
-                // formData.append("file", this.file);
-                // resp.data.usersame == true then rerouting
-                // console.log("response from profile-pic", resp);
-                // console.log("resp.data.data"), resp.data.rows;
-                // console.log("pic", resp.data.rows.profilePicUrl);
-
-                // checking by server response (cookie==user types id)
-
                 this.setState({
                     id: resp.data.rows.id,
                     first: resp.data.rows.first,
@@ -93,7 +85,7 @@ export default class OtherProfile extends Component {
 
                 <img
                     className="profile-pic"
-                    src={this.state.profilePicUrl}
+                    src={this.state.profilePicUrl || "/images/avatar.svg"}
                     alt={`${this.state.first} ${this.state.last}`}
                 />
                 <p className="bio">{this.state.bio}</p>

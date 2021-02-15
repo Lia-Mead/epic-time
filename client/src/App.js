@@ -5,6 +5,7 @@ import Header from "./Header";
 import Uploader from "./Uploader";
 import Profile from "./Profile";
 import OtherProfile from "./OtherProfile";
+import FindPeople from "./FindPeople";
 import axios from "./Axios";
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -101,6 +102,18 @@ export default class App extends Component {
                                 key={props.match.url}
                                 match={props.match} // must be passed down when we work with match
                                 history={props.history}
+                            />
+                        )}
+                    />
+
+                    <Route
+                        path="/find-users"
+                        render={() => (
+                            <FindPeople
+                                id={this.state.id}
+                                first={this.state.first}
+                                last={this.state.last}
+                                profilePicUrl={this.state.profilePicUrl}
                             />
                         )}
                     />

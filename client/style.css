@@ -32,7 +32,6 @@ body {
 }
 
 header {
-    /* background-color: #ffffff; */
     background-color: #262323;
     box-shadow: 0px 16px 8px rgb(132 128 128 / 8%);
     display: flex;
@@ -61,6 +60,7 @@ h3 {
     color: #56568e;
     font-family: "Space Mono";
     margin: 20px 0;
+    text-align: center;
 }
 
 a {
@@ -111,6 +111,7 @@ nav ul li a {
 .error {
     margin: 20px 0;
     color: #dc28fb;
+    text-align: center;
 }
 
 .center-box {
@@ -216,6 +217,13 @@ input:-webkit-autofill {
     color: black;
 }
 
+.find-people {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 20px auto;
+}
+
 .btn {
     padding: 10px 14px;
     min-width: 160px;
@@ -265,7 +273,7 @@ input:-webkit-autofill {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    margin: 50px;
+    margin: 50px 50px 10px;
     object-fit: cover;
 }
 
@@ -287,8 +295,25 @@ input:-webkit-autofill {
     border: 1px solid white;
 }
 
+.user-search {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+.user-search img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.user-search p {
+    margin: 20px;
+}
+
 .icon {
-    width: 60px;
+    width: 45px;
     cursor: pointer;
 }
 
@@ -309,6 +334,14 @@ input:-webkit-autofill {
         rgb(161 116 242) 0%,
         rgb(213 193 229) 100%
     );
+}
+
+.search-con {
+    border: 1px solid black;
+    width: 40%;
+    padding: 10px;
+    text-align: center;
+    align-self: center;
 }
 
 .bio {
