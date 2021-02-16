@@ -72,3 +72,30 @@ module.exports.threeUsers = () => {
     const q = `SELECT id, first, last, image FROM users ORDER BY id DESC LIMIT 3`;
     return db.query(q);
 };
+
+module.exports.checkFriendStatus = (recipient_id, sender_id) => {
+    const q = `SELECT * FROM friendships WHERE (recipient_id = $1 AND sender_id = $2) OR (recipient_id = $2 AND sender_id = $1)`;
+    const params = [recipient_id, sender_id];
+    return db.query(q, params);
+};
+
+module.exports.createFriendship = (recipient_id, sender_id) => {
+    const q = `INSERT INTO friendships (recipient_id, sender_id)
+    VALUES ($1, $2) RETURNING *`;
+    const params = [recipient_id, sender_id];
+    return db.query(q, params);
+};
+
+module.exports.unfriend = (recipient_id, sender_id) => {
+    const q = `DELETE FROM friendships WHERE (recipient_id=$1 AND sender_id=$2)`;
+    const params = [recipient_id, sender_id];
+    return db.query(q, params);
+};
+
+module.exports.acceptFriendship = (recipient_id, sender_id) => {
+    const q = `UPDATE friendships
+    SET accepted = true
+    WHERE recipient_id = $1 AND sender_id=$2 RETURNING accepted`;
+    const params = [recipient_id, sender_id];
+    return db.query(q, params);
+};

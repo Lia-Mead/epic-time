@@ -1,4 +1,4 @@
-import ProfilePic from "./ProfilePic";
+import ProfilePic from "../ProfilePic";
 import { render } from "@testing-library/react";
 
 // 3 tests

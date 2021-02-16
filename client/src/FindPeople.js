@@ -27,7 +27,6 @@ export default function FindPeople() {
                 .get(`/find/${userInput}`)
                 .then(({ data }) => {
                     // console.log("data in find users: ", data);
-
                     if (!abort) {
                         setUsers(data.rows);
                         userInput && setError(!data.success);

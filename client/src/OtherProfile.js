@@ -1,6 +1,7 @@
 import { Component } from "react";
 import axios from "./Axios";
 import { Link } from "react-router-dom";
+import FriendShipButton from "./FriendshipButton";
 
 export default class OtherProfile extends Component {
     constructor(props) {
@@ -13,6 +14,15 @@ export default class OtherProfile extends Component {
             bio: this.props.bio,
             error: false,
         };
+    }
+
+    updateFriendshipStatus(status) {
+        this.setState(
+            {
+                friendship: status,
+            },
+            () => console.log("this.state.friendship", this.state.friendship)
+        );
     }
 
     componentDidMount() {
@@ -32,11 +42,6 @@ export default class OtherProfile extends Component {
                     error: false,
                 });
 
-                // if (resp.data.myUser) {
-                //     this.props.history.push("/");
-                // }
-
-                // check by cookie inside axios
                 if (this.props.match.params.id == resp.data.cookie) {
                     this.props.history.push("/");
                 }
@@ -82,13 +87,18 @@ export default class OtherProfile extends Component {
                 <h2>
                     {this.state.first} {this.state.last}
                 </h2>
-
                 <img
                     className="profile-pic"
                     src={this.state.profilePicUrl || "/images/avatar.svg"}
                     alt={`${this.state.first} ${this.state.last}`}
                 />
                 <p className="bio">{this.state.bio}</p>
+                <FriendShipButton
+                    id={this.state.id}
+                    updateFriendshipStatus={(e) => {
+                        this.friendshipUpdateStatus(e);
+                    }}
+                />
             </div>
         );
     }

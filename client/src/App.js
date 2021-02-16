@@ -16,11 +16,11 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        console.log("APP MOUNTED");
+        // console.log("APP MOUNTED");
         axios
             .get("/user.json")
             .then((resp) => {
-                console.log("response success user.data", resp.data.rows);
+                // console.log("response success user.data", resp.data.rows);
                 this.setState({
                     id: resp.data.rows.id,
                     first: resp.data.rows.first,
@@ -52,7 +52,7 @@ export default class App extends Component {
     // }
 
     render() {
-        console.log("this.state in app: ", this.state);
+        // console.log("this.state in app: ", this.state);
         if (!this.state.id) {
             return null;
             // return (
