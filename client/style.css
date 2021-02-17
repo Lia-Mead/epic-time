@@ -263,6 +263,13 @@ input:-webkit-autofill {
 
 /* Components*/
 
+.burger {
+    background-color: blue;
+    width: 20%;
+    height: 30%;
+    position: absolute;
+}
+
 .profile {
     display: flex;
     flex-direction: column;

@@ -1,11 +1,23 @@
 import { Link } from "react-router-dom";
+// import { useState } from "react";
 
 export default function BurgerMenu() {
-    // <img onClick={toggleUploader} className="icon" src="/images/burger.svg" />;
+    // onClick = { toggleBurgerMenu };
+
+    // const [burgerOpen, setBurgerOpen] = useState(false);
+
+    // const toggleBurgerMenu = () => {
+    //     console.log("toggle close");
+    //     setBurgerOpen(!burgerOpen);
+    // };
 
     return (
         <nav className="burger">
+            <img className="icon" src="/images/close.svg" />
             <ul>
+                <li>
+                    <a href="/logout">Logout</a>
+                </li>
                 <li>
                     <a href="/"></a>
                 </li>
@@ -17,43 +29,7 @@ export default function BurgerMenu() {
                 </li>
 
                 <Link to="/find-users">Find Friends</Link>
-
-                <li>
-                    <a href="/logout">Logout</a>
-                </li>
             </ul>
         </nav>
     );
 }
-
-// import ProfilePic from "./ProfilePic";
-// import BioEditor from "./BioEditor";
-
-// export default function Profile(props) {
-//     // console.log("props in profile", props);
-//     const { id, first, last, profilePicUrl, bio, toggleUploader } = props;
-//     return (
-//         <div className="profile border-green">
-//             <h1>
-//                 ✭ Welcome to the 90's {first} {last} ✭
-//             </h1>
-//             <div className="profile-pic">
-//                 <ProfilePic
-//                     id={id}
-//                     first={first}
-//                     last={last}
-//                     profilePicUrl={profilePicUrl}
-//                     // toggleUploader={toggleUploader}
-//                 />
-//             </div>
-
-//             <img
-//                 onClick={toggleUploader}
-//                 className="icon"
-//                 src="/images/camera.svg"
-//             />
-
-//             <BioEditor bio={bio} />
-//         </div>
-//     );
-// }

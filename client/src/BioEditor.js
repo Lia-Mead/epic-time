@@ -85,3 +85,4 @@ export default class BioEditor extends React.Component {
 
 // ask whyyyyy
 // defaultValue={this.state.bio || "I am a fox"}
+// this.state.bio ? this.state.bio : "I am a fox";

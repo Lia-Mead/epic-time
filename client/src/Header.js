@@ -1,87 +1,56 @@
 import Logo from "./Logo";
 import ProfilePic from "./ProfilePic";
+import BurgerMenu from "./BurgerMenu";
 import Menu from "./Menu";
 import { Link } from "react-router-dom";
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header(props) {
-    let mql = window.matchMedia("(max-width: 600px)");
-    console.log("mql: ", mql);
-    console.log("mql media: ", mql.media);
-    console.log("mql onChange: ", mql.onChange);
+    // console.log("mql media: ", mql.media);
+    // console.log("mql matches: ", mql.matches);
+    // console.log("mql onChange: ", mql.onChange);
+    const [mQuery, setMQuery] = useState();
 
-    // const [mQuery, setMQuery] = useState();
+    useEffect(() => {
+        // componentDidMount - registers eventlistener, event fired by the browser
+        window.addEventListener("resize", updateSize);
+    });
 
-    // function updateSize() {
-    //     setMQuery([window.innerWidth, window.innerHeight]);
-    // }
+    const updateSize = () => {
+        // console.log("size updated");
+        let mql = window.matchMedia("(max-width: 800px)");
+        setMQuery(mql.matches);
+        console.log(mql.matches); // true or false
+    };
 
-    // useEffect(() => {
-    //     window.addEventListener("resize", this.updateSize);
-    // });
+    const [burgerOpen, setBurgerOpen] = useState(false);
 
-    //     toggleUploader() {
-    //     this.setState({
-    //         uploaderVisible: !this.state.uploaderVisible,
-    //     });
-    // }
+    const toggleBurgerMenu = () => {
+        console.log("toggle open");
+        setBurgerOpen(!burgerOpen);
+    };
 
-    // mediaQueryListEvent = () => {
-    //     isTrusted: true,
-    // }
-
-    // const [mQuery, setMQuery] =
-    //     React.useState <
-    //     any >
-    //     {
-    //         matches: window.innerWidth > 768 ? true : false,
-    //     };
-
-    // useEffect(() => {
-    //     let mediaQuery = window.matchMedia("(min-width: 768px)");
-    //     mediaQuery.addListener(setMQuery);
-    //     // this is the cleanup function to remove the listener
-    //     return () => mediaQuery.removeListener(setMQuery);
-    // }, []);
-
-    /// WORKING VERSION
     return (
-        <header>
-            <Link className="menu-right" to="/">
-                <Logo />
-            </Link>
-            <div className="menu-right">
-                {mql.matches ? (
-                    <img className="icon" src="/images/burger.svg" />
-                ) : (
-                    <Menu />
-                )}
-                <ProfilePic {...props} />
-            </div>
-        </header>
+        <>
+            <header>
+                <Link className="menu-right" to="/">
+                    <Logo />
+                </Link>
+                <div className="menu-right">
+                    {mQuery ? (
+                        <img
+                            onClick={toggleBurgerMenu}
+                            className="icon"
+                            src="/images/burger.svg"
+                        />
+                    ) : (
+                        <Menu />
+                    )}
+                    <ProfilePic {...props} />
+                </div>
+            </header>
+
+            {burgerOpen ? <BurgerMenu className="burger" /> : null}
+        </>
     );
 }
-// export default function Header(props) {
-//     let mql = window.matchMedia("(max-width: 600px)");
-
-//     return (
-//         <header>
-//             <Link className="menu-right" to="/">
-//                 <Logo />
-//             </Link>
-//             <div className="menu-right">
-//                 <Menu />
-//                 <ProfilePic {...props} />
-//             </div>
-//         </header>
-//     );
-// }
-
-// let mql = window.matchMedia("(max-width: 600px)");
-
-// {mql ? <mobile /> : <Menu />}
-
-// <img onClick={toggleUploader} className="icon" src="/images/burger.svg" />;
-
-// onClick = { toggleUploader };
-// onChange={(e) => setMQuery(e.mql)}
