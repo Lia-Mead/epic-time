@@ -3,7 +3,7 @@ import App from "../App";
 import { render, waitFor, fireEvent } from "@testing-library/react";
 import axios from "../Axios";
 
-jest.mock("./Axios");
+jest.mock("../Axios");
 
 axios.get.mockResolvedValue({
     data: {

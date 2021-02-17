@@ -122,10 +122,3 @@ export default class App extends Component {
         );
     }
 }
-
-// component = { OtherProfile };
-
-{
-    /* <Route exact path="/" component={Profile} />; */
-}
-// if u pass props down u have to use arrow witout render

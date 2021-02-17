@@ -2,7 +2,7 @@ import BioEditor from "../BioEditor";
 import { render, waitFor, fireEvent } from "@testing-library/react";
 import axios from "../Axios";
 
-jest.mock("./Axios");
+jest.mock("../Axios");
 
 test("first and last name become the alt of the image when passed as props ", () => {
     const { container } = render(<BioEditor bio="" />);

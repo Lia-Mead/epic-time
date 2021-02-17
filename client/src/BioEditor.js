@@ -69,7 +69,7 @@ export default class BioEditor extends React.Component {
             );
         }
         return (
-            <div className="bio border-acqua">
+            <div className="bio">
                 <h2>Something groovy about myself</h2>
                 <p>{this.state.bio}</p>
 

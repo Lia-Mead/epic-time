@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Menu() {
     return (
         <nav>
@@ -11,6 +13,8 @@ export default function Menu() {
                 <li>
                     <a href="/"></a>
                 </li>
+
+                <Link to="/find-users">Find Friends</Link>
 
                 <li>
                     <a href="/logout">Logout</a>
