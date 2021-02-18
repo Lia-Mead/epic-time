@@ -90,7 +90,11 @@ nav {
     align-items: center;
 }
 
-nav ul {
+nav a {
+    margin: 0 20px;
+}
+
+/* nav ul {
     display: flex;
     align-content: flex-end;
     justify-content: flex-end;
@@ -102,7 +106,7 @@ nav ul li {
 
 nav ul li a {
     margin: 20px;
-}
+} */
 
 .giphy-embed {
     margin-top: 40px;
@@ -144,8 +148,14 @@ nav ul li a {
 }
 
 .logo {
-    width: 300px;
-    padding: 22px;
+    width: 65%;
+    padding-left: 22px;
+}
+
+.logo-link {
+    max-width: 55%;
+    display: flex;
+    align-items: center;
 }
 
 .reg-form {
@@ -252,22 +262,55 @@ input:-webkit-autofill {
     border-radius: 40px;
     background-color: #d4f2ef;
     border: 1px solid #00af91;
-
     margin: 30px 0px;
-    /* align-self: flex-end; */
 }
 
 .btn.user:hover {
     background-color: #6ed4c3;
 }
 
+.btn.ghost {
+    justify-self: center;
+    background-color: #fff;
+    color: #00af91;
+    margin: 0 auto;
+}
+
+.btn.ghost:hover {
+    /* background-color: #d4f2ef; */
+    border: 1px solid black;
+    color: black;
+}
+
 /* Components*/
 
 .burger {
-    background-color: blue;
-    width: 20%;
-    height: 30%;
+    background-color: #6ed4c3;
+    width: 100%;
+    min-height: 20%;
     position: absolute;
+    display: flex;
+    z-index: 300;
+    top: 110px;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.burger nav {
+    display: flex;
+    z-index: 300;
+    top: 110px;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.burger a {
+    color: black;
+    margin: 20px 40px;
 }
 
 .profile {
@@ -278,9 +321,15 @@ input:-webkit-autofill {
 
 .friends {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
     justify-content: center;
+    min-height: 500px;
+    padding: 20px 0 100px;
+    border-bottom: 4px dotted #00af91;
+}
+
+.friends > h1 {
+    width: 100%;
 }
 
 .profile-pic {
@@ -329,12 +378,13 @@ input:-webkit-autofill {
 .icon {
     width: 45px;
     cursor: pointer;
+    margin: 0 20px;
 }
 
 .app {
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    /* width: 100vw; */
     min-height: 100vh;
 }
 
@@ -352,10 +402,11 @@ input:-webkit-autofill {
 
 .search-con {
     border: 1px solid black;
-    width: 40%;
+    max-width: 500px;
     padding: 10px;
     text-align: center;
     align-self: center;
+    margin: 40px 0;
 }
 
 .bio {
@@ -398,7 +449,6 @@ input:-webkit-autofill {
     }
 
     p {
-        width: 90%;
         font-size: 0.9em;
     }
 

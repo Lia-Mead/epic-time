@@ -24,8 +24,9 @@ export default function Friends() {
 
     return (
         <div>
-            <h2>Wannabes</h2>
+            <h1>Wannabes</h1>
             <div className="friends">
+                {wannabes.length === 0 && <h3>If you wannabe my friend</h3>}
                 {wannabes &&
                     wannabes.map((user) => (
                         <div key={user.id}>
@@ -34,7 +35,7 @@ export default function Friends() {
                                 <p>
                                     {user.first} {user.last}
                                 </p>
-                                <div className="btn-purple">
+                                <div className="profile">
                                     <button
                                         className="btn user"
                                         onClick={() =>
@@ -43,14 +44,23 @@ export default function Friends() {
                                     >
                                         Accept
                                     </button>
+                                    <button
+                                        className="btn ghost"
+                                        onClick={() =>
+                                            dispatch(unfriend(user.id))
+                                        }
+                                    >
+                                        Ghost
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     ))}
             </div>
 
-            <h2>Friends</h2>
             <div className="friends">
+                <h1>Friends</h1>
+                {friends.length === 0 && <h3>You are not alone</h3>}
                 {friends &&
                     friends.map((user) => (
                         <div key={user.id}>
@@ -59,9 +69,9 @@ export default function Friends() {
                                 <p>
                                     {user.first} {user.last}
                                 </p>
-                                <div className="btn-purple">
+                                <div>
                                     <button
-                                        className="btn user"
+                                        className="btn ghost"
                                         onClick={() =>
                                             dispatch(unfriend(user.id))
                                         }

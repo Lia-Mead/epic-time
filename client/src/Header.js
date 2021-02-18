@@ -9,6 +9,7 @@ export default function Header(props) {
     // console.log("mql media: ", mql.media);
     // console.log("mql matches: ", mql.matches);
     // console.log("mql onChange: ", mql.onChange);
+
     const [mQuery, setMQuery] = useState();
 
     useEffect(() => {
@@ -18,9 +19,9 @@ export default function Header(props) {
 
     const updateSize = () => {
         // console.log("size updated");
-        let mql = window.matchMedia("(max-width: 800px)");
+        let mql = window.matchMedia("(max-width: 900px)");
         setMQuery(mql.matches);
-        console.log(mql.matches); // true or false
+        // console.log(mql.matches); // true or false
     };
 
     const [burgerOpen, setBurgerOpen] = useState(false);
@@ -30,18 +31,21 @@ export default function Header(props) {
         setBurgerOpen(!burgerOpen);
     };
 
+    let src;
+    burgerOpen ? (src = "/images/close.svg") : (src = "/images/burger.svg");
+
     return (
         <>
             <header>
-                <Link className="menu-right" to="/">
-                    <Logo />
+                <Link className="logo-link" to="/">
+                    <Logo className="logo" />
                 </Link>
                 <div className="menu-right">
                     {mQuery ? (
                         <img
                             onClick={toggleBurgerMenu}
                             className="icon"
-                            src="/images/burger.svg"
+                            src={src}
                         />
                     ) : (
                         <Menu />
@@ -50,7 +54,36 @@ export default function Header(props) {
                 </div>
             </header>
 
-            {burgerOpen ? <BurgerMenu className="burger" /> : null}
+            {burgerOpen ? (
+                <BurgerMenu
+                    className="burger"
+                    toggleBurgerMenu={toggleBurgerMenu}
+                />
+            ) : null}
         </>
     );
 }
+
+// return (
+//     <>
+//         <header>
+//             <Link className="logo-link" to="/">
+//                 <Logo className="logo" />
+//             </Link>
+//             <div className="menu-right">
+//                 {mQuery ? (
+//                     <img
+//                         onClick={toggleBurgerMenu}
+//                         className="icon"
+//                         src="/images/burger.svg"
+//                     />
+//                 ) : (
+//                     <Menu />
+//                 )}
+//                 <ProfilePic {...props} />
+//             </div>
+//         </header>
+
+//         {burgerOpen ? <BurgerMenu className="burger" /> : null}
+//     </>
+// );
