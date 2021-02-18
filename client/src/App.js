@@ -6,6 +6,7 @@ import Uploader from "./Uploader";
 import Profile from "./Profile";
 import OtherProfile from "./OtherProfile";
 import FindPeople from "./FindPeople";
+import Friends from "./Friends";
 import axios from "./Axios";
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -71,7 +72,6 @@ export default class App extends Component {
                         toggleUploader={() => this.toggleUploader()}
                         size="small"
                     />
-
                     {this.state.uploaderVisible && (
                         <Uploader
                             setProfilePicUrl={(profilePicUrl) =>
@@ -79,7 +79,6 @@ export default class App extends Component {
                             }
                         />
                     )}
-
                     <Route
                         exact
                         path="/"
@@ -94,7 +93,6 @@ export default class App extends Component {
                             />
                         )}
                     />
-
                     <Route
                         path="/user/:id"
                         render={(props) => (
@@ -105,7 +103,6 @@ export default class App extends Component {
                             />
                         )}
                     />
-
                     <Route
                         path="/find-users"
                         render={() => (
@@ -117,8 +114,27 @@ export default class App extends Component {
                             />
                         )}
                     />
+                    <Route path="/show-my-friends" render={() => <Friends />} />
                 </div>
             </BrowserRouter>
         );
     }
 }
+
+{
+    /* <Route exact path="/hot" component={Hot} />; */
+}
+
+{
+    /* <Friends
+    id={this.state.id}
+    first={this.state.first}
+    last={this.state.last}
+    profilePicUrl={this.state.profilePicUrl}
+/>; */
+}
+{
+    /* <Route path="/show-my-friends" render={() => <Friends />} />; */
+}
+
+//  <Route path="/show-my-friends" component={Friends} />;

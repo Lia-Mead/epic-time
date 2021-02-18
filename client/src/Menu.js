@@ -4,17 +4,9 @@ export default function Menu() {
     return (
         <nav>
             <ul>
-                <li>
-                    <a href="/"></a>
-                </li>
-                <li>
-                    <a href="/"></a>
-                </li>
-                <li>
-                    <a href="/"></a>
-                </li>
-
                 <Link to="/find-users">Find Friends</Link>
+
+                <Link to="/show-my-friends">Friends</Link>
 
                 <li>
                     <a href="/logout">Logout</a>

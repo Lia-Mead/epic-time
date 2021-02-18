@@ -340,20 +340,33 @@ app.get("/check-friendship/:requestedUser", (req, res) => {
         });
 });
 
+app.get("/friends-wannabes", (req, res) => {
+    // console.log("get friends-wannabes");
+    const userId = req.session.userId;
+    // console.log("userId in friends-wannabes,", userId);
+
+    db.showFriends(userId)
+        .then(({ rows }) => {
+            // console.log("rows: ", rows);
+            res.json({ success: true, rows: rows });
+        })
+        .catch((err) => {
+            console.log("error in friends-wannabes", err);
+            res.json({ success: false });
+        });
+});
+
 app.post("/check-friendship/:status", (req, res) => {
-    console.log("post send friend request route");
+    // console.log("post send friend request route");
     const requestedUser = req.body.id;
     const loggedInUser = req.session.userId;
-    // console.log("req.params.status: ", req.params.status);
-    // console.log("req.body: ", req.body);
 
     if (req.params.status == "send") {
         db.createFriendship(requestedUser, loggedInUser)
             .then(({ rows }) => {
                 console.log("rows in createfriendship", rows);
-                res.json({
-                    button: "cancel",
-                });
+
+                res.json({ rows: rows, button: "cancel" });
             })
             .catch((err) => {
                 console.log("error in createFriendship", err);

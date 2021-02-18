@@ -276,6 +276,13 @@ input:-webkit-autofill {
     align-items: center;
 }
 
+.friends {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .profile-pic {
     width: 300px;
     height: 300px;
