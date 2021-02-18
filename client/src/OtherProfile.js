@@ -33,6 +33,9 @@ export default class OtherProfile extends Component {
         axios
             .get(`/show-users/${this.props.match.params.id}`)
             .then((resp) => {
+                if (this.props.match.params.id == resp.data.cookie) {
+                    return this.props.history.push("/");
+                }
                 this.setState({
                     id: resp.data.rows.id,
                     first: resp.data.rows.first,
@@ -41,10 +44,6 @@ export default class OtherProfile extends Component {
                     bio: resp.data.rows.bio,
                     error: false,
                 });
-
-                if (this.props.match.params.id == resp.data.cookie) {
-                    this.props.history.push("/");
-                }
             })
             .catch((err) => {
                 console.log("error in GET other profile", err);
