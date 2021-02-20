@@ -5,7 +5,7 @@ export default function Profile(props) {
     // console.log("props in profile", props);
     const { id, first, last, profilePicUrl, bio, toggleUploader } = props;
     return (
-        <div className="profile">
+        <div className="profile high">
             <h1>
                 ✭ Welcome to the 90's {first} {last} ✭
             </h1>

@@ -81,7 +81,7 @@ export default class OtherProfile extends Component {
             );
         }
         return (
-            <div className="profile">
+            <div className="profile high">
                 <h1>
                     {this.state.first} {this.state.last}
                 </h1>
@@ -99,9 +99,7 @@ export default class OtherProfile extends Component {
                 />
                 <Link
                     style={{
-                        marginTop: "30px",
-                        position: "absolute",
-                        bottom: "80px",
+                        marginTop: "120px",
                     }}
                     to="/find-users"
                 >

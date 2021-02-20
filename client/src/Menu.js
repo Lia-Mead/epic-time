@@ -26,9 +26,7 @@ export default function Menu() {
                 </li>
 
                 <li>
-                    <a href="/logout" activeClassName="active">
-                        Logout
-                    </a>
+                    <a href="/logout">Logout</a>
                 </li>
             </ul>
         </nav>

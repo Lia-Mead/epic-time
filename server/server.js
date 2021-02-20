@@ -308,11 +308,10 @@ app.post("/bio", (req, res) => {
 });
 
 app.get("/check-friendship/:requestedUser", (req, res) => {
-    console.log("get check-friendship");
     const { requestedUser } = req.params;
     const loggedInUser = req.session.userId;
-    console.log("requestedUser", requestedUser);
-    console.log("loggedInUser", loggedInUser);
+    // console.log("requestedUser", requestedUser);
+    // console.log("loggedInUser", loggedInUser);
 
     db.checkFriendStatus(requestedUser, loggedInUser)
         .then(({ rows }) => {
