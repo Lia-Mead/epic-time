@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "./Axios";
 
 export default function FriendshipButton(props) {
-    // const [viewer, setViewer] = useState("");
-    // const [viewee, setViewee] = useState("");
     const [friendshipStatus, setFriendshipStatus] = useState("");
-    // const [accepted, setAccepted] = useState("");
     const [error, setError] = useState(false);
     // const [buttonText, setButtonText] = "send";
 

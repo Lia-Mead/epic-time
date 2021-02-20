@@ -56,10 +56,10 @@ export default class OtherProfile extends Component {
     render() {
         if (!this.state.id) {
             return (
-                <div className="profile error">
+                <div style={{ minHeight: "84vh" }} className="profile error">
                     {this.state.error && (
                         <>
-                            <p>This user has not made it to the 90's yet.</p>
+                            <p>This user has not yet made it to the 90's.</p>
 
                             <iframe
                                 src="https://giphy.com/embed/21KWT2zGb26DrxpHYw"

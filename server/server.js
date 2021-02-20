@@ -400,6 +400,10 @@ app.post("/check-friendship/:status", (req, res) => {
     }
 });
 
+app.get("/404", (req, res) => {
+    console.log("i am 404");
+});
+
 /// NEVER MOVE THIS !!!!!!!!!!!!
 app.get("*", function (req, res) {
     if (!req.session.userId) {

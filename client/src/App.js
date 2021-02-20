@@ -6,7 +6,9 @@ import OtherProfile from "./OtherProfile";
 import FindPeople from "./FindPeople";
 import Friends from "./Friends";
 import axios from "./Axios";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import NotFound from "./NotFound";
 
 export default class App extends Component {
     constructor(props) {
@@ -77,42 +79,51 @@ export default class App extends Component {
                             }
                         />
                     )}
-                    <Route
-                        exact
-                        path="/"
-                        render={() => (
-                            <Profile
-                                id={this.state.id}
-                                first={this.state.first}
-                                last={this.state.last}
-                                profilePicUrl={this.state.profilePicUrl}
-                                bio={this.state.bio}
-                                toggleUploader={() => this.toggleUploader()}
-                            />
-                        )}
-                    />
-                    <Route
-                        path="/user/:id"
-                        render={(props) => (
-                            <OtherProfile
-                                key={props.match.url}
-                                match={props.match} // must be passed down when we work with match
-                                history={props.history}
-                            />
-                        )}
-                    />
-                    <Route
-                        path="/find-users"
-                        render={() => (
-                            <FindPeople
-                                id={this.state.id}
-                                first={this.state.first}
-                                last={this.state.last}
-                                profilePicUrl={this.state.profilePicUrl}
-                            />
-                        )}
-                    />
-                    <Route path="/show-my-friends" render={() => <Friends />} />
+
+                    <Switch>
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <Profile
+                                    id={this.state.id}
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    profilePicUrl={this.state.profilePicUrl}
+                                    bio={this.state.bio}
+                                    toggleUploader={() => this.toggleUploader()}
+                                />
+                            )}
+                        />
+
+                        <Route
+                            path="/user/:id"
+                            render={(props) => (
+                                <OtherProfile
+                                    key={props.match.url}
+                                    match={props.match} // must be passed down when we work with match
+                                    history={props.history}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/find-users"
+                            render={() => (
+                                <FindPeople
+                                    id={this.state.id}
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    profilePicUrl={this.state.profilePicUrl}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/show-my-friends"
+                            render={() => <Friends />}
+                        />
+
+                        <Route component={NotFound} />
+                    </Switch>
 
                     <footer>
                         <div className="foot-note">
