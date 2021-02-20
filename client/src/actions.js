@@ -7,8 +7,9 @@ import axios from "./Axios";
 export async function receiveFriendsWannabes() {
     const { data } = await axios.get("/friends-wannabes");
     if (data.success) {
-        console.log(("recieveFriends data: ", data));
-        console.log("recieveFriends data.rows", data.rows);
+        // console.log(("recieveFriends data: ", data));
+        // console.log("recieveFriends data.rows", data.rows);
+        // console.log("recieveFriends data.rows[0]", data.rows[0].sender_id);
         return {
             type: "SHOW_WANNABES",
             friendsList: data.rows,

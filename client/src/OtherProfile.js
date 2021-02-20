@@ -82,10 +82,9 @@ export default class OtherProfile extends Component {
         }
         return (
             <div className="profile">
-                <h1>I am the other profile</h1>
-                <h2>
+                <h1>
                     {this.state.first} {this.state.last}
-                </h2>
+                </h1>
                 <img
                     className="profile-pic"
                     src={this.state.profilePicUrl || "/images/avatar.svg"}
@@ -95,9 +94,19 @@ export default class OtherProfile extends Component {
                 <FriendShipButton
                     id={this.state.id}
                     updateFriendshipStatus={(e) => {
-                        this.friendshipUpdateStatus(e);
+                        this.updateFriendshipStatus(e);
                     }}
                 />
+                <Link
+                    style={{
+                        marginTop: "30px",
+                        position: "absolute",
+                        bottom: "80px",
+                    }}
+                    to="/find-users"
+                >
+                    <h3>Find More Retro Humans</h3>
+                </Link>
             </div>
         );
     }

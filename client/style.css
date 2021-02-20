@@ -3,7 +3,7 @@
     margin: 0;
 }
 
-.border-green {
+/* .border-green {
     border: 5px green solid;
 }
 .border-orange {
@@ -23,7 +23,7 @@
 }
 .border-blue {
     border: 5px blue solid;
-}
+} */
 
 body {
     background-color: ghostwhite;
@@ -42,7 +42,7 @@ header {
 h1 {
     color: #5ab1a9;
     text-align: center;
-    margin: 40px 30px 0px;
+    margin: 50px 30px 0px;
     font-size: 1.9em;
 }
 
@@ -83,6 +83,7 @@ p {
 .menu-right {
     display: flex;
     align-items: center;
+    padding-right: 1%;
 }
 
 nav {
@@ -94,7 +95,11 @@ nav a {
     margin: 0 20px;
 }
 
-/* nav ul {
+nav a:hover {
+    color: #d4f1ef;
+}
+
+nav ul {
     display: flex;
     align-content: flex-end;
     justify-content: flex-end;
@@ -106,7 +111,11 @@ nav ul li {
 
 nav ul li a {
     margin: 20px;
-} */
+}
+
+.active {
+    color: #b78abf;
+}
 
 .giphy-embed {
     margin-top: 40px;
@@ -116,6 +125,7 @@ nav ul li a {
     margin: 20px 0;
     color: #dc28fb;
     text-align: center;
+    font-family: "Space Mono";
 }
 
 .center-box {
@@ -149,13 +159,18 @@ nav ul li a {
 
 .logo {
     width: 65%;
-    padding-left: 22px;
+}
+
+.intro .logo {
+    width: 35%;
+    max-width: 40%;
 }
 
 .logo-link {
     max-width: 55%;
     display: flex;
     align-items: center;
+    padding-left: 2%;
 }
 
 .reg-form {
@@ -179,6 +194,10 @@ textarea {
     color: #00af91;
     background: content-box;
     border-radius: 20px;
+}
+
+textarea:focus {
+    outline: none;
 }
 
 input {
@@ -224,7 +243,7 @@ input:-webkit-autofill {
     min-width: 330px !important;
     font-size: 25px;
     margin: 0;
-    color: black;
+    color: white;
 }
 
 .find-people {
@@ -232,10 +251,11 @@ input:-webkit-autofill {
     flex-direction: column;
     width: 80%;
     margin: 20px auto;
+    min-height: 86vh;
 }
 
 .btn {
-    padding: 10px 14px;
+    padding: 10px 20px;
     min-width: 160px;
     border-radius: 40px;
     background-color: #5ab1a9;
@@ -262,7 +282,16 @@ input:-webkit-autofill {
     border-radius: 40px;
     background-color: #d4f2ef;
     border: 1px solid #00af91;
-    margin: 30px 0px;
+    margin: 30px 0px 0;
+}
+
+.btn.upload {
+    color: black;
+    border: white 1px solid;
+}
+
+.btn.upload:hover {
+    background-color: #fff;
 }
 
 .btn.user:hover {
@@ -273,7 +302,7 @@ input:-webkit-autofill {
     justify-self: center;
     background-color: #fff;
     color: #00af91;
-    margin: 0 auto;
+    margin: 20px 0px 0px;
 }
 
 .btn.ghost:hover {
@@ -282,16 +311,27 @@ input:-webkit-autofill {
     color: black;
 }
 
+footer {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foot-note {
+    font-size: 0.8em;
+}
+
 /* Components*/
 
 .burger {
     background-color: #6ed4c3;
     width: 100%;
-    min-height: 20%;
+    min-height: 30%;
     position: absolute;
     display: flex;
     z-index: 300;
-    top: 110px;
+    top: 105px;
     flex-direction: column;
     text-align: left;
     justify-content: center;
@@ -313,6 +353,11 @@ input:-webkit-autofill {
     margin: 20px 40px;
 }
 
+.burger a {
+    color: black;
+    margin: 20px 40px;
+}
+
 .profile {
     display: flex;
     flex-direction: column;
@@ -323,14 +368,18 @@ input:-webkit-autofill {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    min-height: 500px;
+    min-height: 300px;
     padding: 20px 0 100px;
-    border-bottom: 4px dotted #00af91;
+    border-bottom: 4px dotted #a778b6;
 }
 
 .friends > h1 {
     width: 100%;
 }
+
+/* .friends:last-child {
+    border-bottom: none;
+} */
 
 .profile-pic {
     width: 300px;
@@ -392,11 +441,13 @@ input:-webkit-autofill {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgb(2, 0, 36);
+    /* position: absolute;
+    width: 100%;
+    top: 105px; */
     background: linear-gradient(
         360deg,
-        rgb(161 116 242) 0%,
-        rgb(213 193 229) 100%
+        rgb(68 68 114) 0%,
+        rgb(142 95 180) 100%
     );
 }
 
@@ -416,10 +467,13 @@ input:-webkit-autofill {
     width: 70%;
 }
 
-@media only screen and (max-width: 600px) {
+.bio > p {
+    max-width: 900px;
+}
+
+@media only screen and (max-width: 700px) {
     .welcome {
         flex-direction: column;
-        height: auto;
     }
 
     .intro {
@@ -437,11 +491,11 @@ input:-webkit-autofill {
 
     .btn {
         width: 80%;
-        padding: 10px 20px;
     }
 
     h1 {
         font-size: 1.7em;
+        margin: 50px 0px 0px;
     }
     h2 {
         font-size: 1.3em;

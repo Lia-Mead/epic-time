@@ -1,7 +1,5 @@
 import { Component } from "react";
-// import Logo from "./Logo";
 import Header from "./Header";
-// import ProfilePic from "./ProfilePic";
 import Uploader from "./Uploader";
 import Profile from "./Profile";
 import OtherProfile from "./OtherProfile";
@@ -64,7 +62,7 @@ export default class App extends Component {
         }
         return (
             <BrowserRouter>
-                <div className="app border-pink">
+                <div className="app">
                     <Header
                         first={this.state.first}
                         last={this.state.last}
@@ -115,26 +113,14 @@ export default class App extends Component {
                         )}
                     />
                     <Route path="/show-my-friends" render={() => <Friends />} />
+
+                    <footer>
+                        <div className="foot-note">
+                            © Made with 🖤 by Liat Meadows 2021
+                        </div>
+                    </footer>
                 </div>
             </BrowserRouter>
         );
     }
 }
-
-{
-    /* <Route exact path="/hot" component={Hot} />; */
-}
-
-{
-    /* <Friends
-    id={this.state.id}
-    first={this.state.first}
-    last={this.state.last}
-    profilePicUrl={this.state.profilePicUrl}
-/>; */
-}
-{
-    /* <Route path="/show-my-friends" render={() => <Friends />} />; */
-}
-
-//  <Route path="/show-my-friends" component={Friends} />;

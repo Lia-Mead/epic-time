@@ -1,5 +1,11 @@
 const express = require("express");
 const app = express();
+// socket io boilerplate code
+const server = require("http").Server(app);
+const io = require("socket.io")(server, {
+    allowRequest: (req, callback) =>
+        callback(null, req.headers.referer.startsWith("http://localhost:3000")),
+});
 const compression = require("compression");
 const path = require("path");
 const db = require("./db");
@@ -348,6 +354,8 @@ app.get("/friends-wannabes", (req, res) => {
     db.showFriends(userId)
         .then(({ rows }) => {
             // console.log("rows: ", rows);
+            // console.log("sender", sender);
+            // const sender = rows[0].sender_id;
             res.json({ success: true, rows: rows });
         })
         .catch((err) => {
@@ -364,8 +372,7 @@ app.post("/check-friendship/:status", (req, res) => {
     if (req.params.status == "send") {
         db.createFriendship(requestedUser, loggedInUser)
             .then(({ rows }) => {
-                console.log("rows in createfriendship", rows);
-
+                // console.log("rows in createfriendship", rows);
                 res.json({ rows: rows, button: "cancel" });
             })
             .catch((err) => {
@@ -375,8 +382,7 @@ app.post("/check-friendship/:status", (req, res) => {
     } else if (req.params.status == "accept") {
         db.acceptFriendship(requestedUser, loggedInUser)
             .then(({ rows }) => {
-                console.log("rows in acceptFriendship", rows);
-
+                // console.log("rows in acceptFriendship", rows);
                 res.json({ rows: rows, button: "end" });
             })
             .catch((err) => {
@@ -385,8 +391,8 @@ app.post("/check-friendship/:status", (req, res) => {
     } else if (req.params.status == "end" || req.params.status == "cancel") {
         db.unfriend(requestedUser, loggedInUser)
             .then(({ rows }) => {
-                console.log("delete friendship");
-                console.log("rows in unfriend", rows);
+                // console.log("delete friendship");
+                // console.log("rows in unfriend", rows);
                 res.json({ rows: rows, button: "send" });
             })
             .catch((err) => {
@@ -404,6 +410,42 @@ app.get("*", function (req, res) {
     }
 });
 
-app.listen(process.env.PORT || 3001, function () {
+server.listen(process.env.PORT || 3001, function () {
     console.log("I'm listening.");
+});
+
+io.on("connection", (socket) => {
+    // console.log("socket", socket);
+    // listening to an event called connection
+    // socket object that is passed to the callback represents the network connection b/w client and server
+    console.log(`Socket with id: ${socket.id} has connected`);
+
+    // sends message to its own socket
+    socket.emit("hello", {
+        cohort: "adobo",
+    });
+
+    // send a message to all sockets except your own
+    socket.broadcast.emit("hello", {
+        cohort: "adobo",
+    });
+
+    // sends message to a SPECIFIC socket
+    io.sockets.sockets.get(socket.id).emit("hello", {
+        cohort: "adobo",
+    });
+
+    // server to talk to ALL connected sockets
+    io.emit("hello", {
+        cohort: "adobo",
+    });
+
+    // send a message to ALL EXCEPT one
+    io.socket.socket.get(socket.id).broadcast.emit("hello", {
+        cohort: "adobo",
+    });
+
+    socket.on("disconnect", () => {
+        console.log(`Socket with id: ${socket.id} just DISCONNECTED`);
+    });
 });

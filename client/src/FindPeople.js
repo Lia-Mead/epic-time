@@ -42,6 +42,7 @@ export default function FindPeople() {
 
     return (
         <div className="find-people">
+            <h1>Groove Is In The Heart</h1>
             <h3>Check out the new time travelers</h3>
 
             {user &&
@@ -71,13 +72,13 @@ export default function FindPeople() {
                 />
             </div>
 
+            {userInput && <h3>All That She Wants is another friend</h3>}
+
             {error && (
                 <p className="error">
                     Hello, there's no one here you're looking for
                 </p>
             )}
-
-            {userInput && <h3>All That She Wants is another friend</h3>}
 
             {userInput &&
                 users.map((val, index) => {

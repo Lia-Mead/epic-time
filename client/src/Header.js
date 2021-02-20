@@ -8,8 +8,6 @@ import { useState, useEffect } from "react";
 export default function Header(props) {
     // console.log("mql media: ", mql.media);
     // console.log("mql matches: ", mql.matches);
-    // console.log("mql onChange: ", mql.onChange);
-
     const [mQuery, setMQuery] = useState();
 
     useEffect(() => {
@@ -19,7 +17,7 @@ export default function Header(props) {
 
     const updateSize = () => {
         // console.log("size updated");
-        let mql = window.matchMedia("(max-width: 900px)");
+        let mql = window.matchMedia("(max-width: 1074px)");
         setMQuery(mql.matches);
         // console.log(mql.matches); // true or false
     };
@@ -38,7 +36,7 @@ export default function Header(props) {
         <>
             <header>
                 <Link className="logo-link" to="/">
-                    <Logo className="logo" />
+                    <Logo onClick={toggleBurgerMenu} className="logo" />
                 </Link>
                 <div className="menu-right">
                     {mQuery ? (
@@ -63,27 +61,3 @@ export default function Header(props) {
         </>
     );
 }
-
-// return (
-//     <>
-//         <header>
-//             <Link className="logo-link" to="/">
-//                 <Logo className="logo" />
-//             </Link>
-//             <div className="menu-right">
-//                 {mQuery ? (
-//                     <img
-//                         onClick={toggleBurgerMenu}
-//                         className="icon"
-//                         src="/images/burger.svg"
-//                     />
-//                 ) : (
-//                     <Menu />
-//                 )}
-//                 <ProfilePic {...props} />
-//             </div>
-//         </header>
-
-//         {burgerOpen ? <BurgerMenu className="burger" /> : null}
-//     </>
-// );

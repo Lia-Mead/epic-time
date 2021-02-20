@@ -50,10 +50,10 @@ export default class Uploader extends Component {
                     type="file"
                     accept="image/*"
                 />
-                <button className="btn" onClick={(e) => this.submit(e)}>
+                <button className="btn upload" onClick={(e) => this.submit(e)}>
                     Upload
                 </button>
-                {this.state.error && <p>Oops somwthing went wrong.</p>}
+                {this.state.error && <p>Oops something went wrong.</p>}
             </div>
         );
     }

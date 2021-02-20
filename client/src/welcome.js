@@ -18,8 +18,8 @@ export default function Welcome() {
                         Kardashians.
                         <br />
                         <br />
-                        Let's pretend we are still in the 90s, play PAC-MAN and
-                        dance the disco.
+                        Let's pretend we are in the 90s, play PAC-MAN and disco
+                        dance.
                     </p>
                 </div>
                 <HashRouter>
