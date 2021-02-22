@@ -15,6 +15,7 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = { uploaderVisible: false };
+        this.state = { deletePic: false };
     }
 
     componentDidMount() {
@@ -46,6 +47,12 @@ export default class App extends Component {
         this.setState({
             profilePicUrl: profilePicUrl,
             uploaderVisible: false,
+        });
+    }
+
+    deletePic(profilePicUrl) {
+        this.setState({
+            profilePicUrl: profilePicUrl,
         });
     }
 
@@ -93,6 +100,9 @@ export default class App extends Component {
                                     profilePicUrl={this.state.profilePicUrl}
                                     bio={this.state.bio}
                                     toggleUploader={() => this.toggleUploader()}
+                                    deletePic={(profilePicUrl) =>
+                                        this.deletePic(profilePicUrl)
+                                    }
                                 />
                             )}
                         />

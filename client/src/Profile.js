@@ -1,9 +1,19 @@
 import ProfilePic from "./ProfilePic";
 import BioEditor from "./BioEditor";
+import DeleteProfilePic from "./DeleteProfilePic";
 
 export default function Profile(props) {
     // console.log("props in profile", props);
-    const { id, first, last, profilePicUrl, bio, toggleUploader } = props;
+    const {
+        id,
+        first,
+        last,
+        profilePicUrl,
+        bio,
+        toggleUploader,
+        deletePic,
+    } = props;
+
     return (
         <div className="profile high">
             <h1>
@@ -19,11 +29,19 @@ export default function Profile(props) {
                 />
             </div>
 
-            <img
-                onClick={toggleUploader}
-                className="icon"
-                src="/images/camera.svg"
-            />
+            <div className="icons">
+                <img
+                    onClick={toggleUploader}
+                    className="icon"
+                    src="/images/camera.svg"
+                />
+
+                <DeleteProfilePic
+                    profilePicUrl={profilePicUrl}
+                    deletePic={deletePic}
+                    id={id}
+                />
+            </div>
 
             <BioEditor bio={bio} />
         </div>

@@ -194,6 +194,21 @@ app.post("/login", function (req, res) {
         });
 });
 
+app.post("/delete-profile-pic", (req, res) => {
+    console.log("I am delete post pic");
+    db.deleteProfilePic(req.session.userId)
+        .then(({ rows }) => {
+            console.log("rows: ", rows);
+            res.json({ success: true, rows: rows });
+        })
+        .catch((err) => {
+            console.log(
+                "there was an error with delete profile pic post: ",
+                err
+            );
+        });
+});
+
 app.get("/logout", (req, res) => {
     req.session = null;
     res.redirect("/");

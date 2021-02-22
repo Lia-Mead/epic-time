@@ -314,6 +314,7 @@ input:-webkit-autofill {
 }
 
 .btn.upload:hover {
+    color: black;
     background-color: #fff;
 }
 
@@ -420,6 +421,12 @@ footer {
     width: 100%;
 }
 
+.icons {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
 /* .friends-con > friends:last-child {
     border-bottom: none;
 } */
@@ -511,7 +518,8 @@ footer {
 }
 
 .bio > p {
-    max-width: 900px;
+    max-width: 800px;
+    margin: 40px;
 }
 
 @media only screen and (max-width: 700px) {

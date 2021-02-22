@@ -137,3 +137,11 @@ module.exports.showNewMessages = () => {
     ORDER BY chats.id DESC LIMIT 10`;
     return db.query(q);
 };
+
+module.exports.deleteProfilePic = (userId) => {
+    const q = `UPDATE users
+    SET image = null
+    WHERE id = $1 returning image, id`;
+    const params = [userId];
+    return db.query(q, params);
+};
