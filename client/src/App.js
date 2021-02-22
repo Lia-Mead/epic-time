@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import OtherProfile from "./OtherProfile";
 import FindPeople from "./FindPeople";
 import Friends from "./Friends";
+import Chat from "./Chat";
 import axios from "./Axios";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
@@ -121,6 +122,8 @@ export default class App extends Component {
                             path="/show-my-friends"
                             render={() => <Friends />}
                         />
+
+                        <Route path="/chat" render={() => <Chat />} />
 
                         <Route component={NotFound} />
                     </Switch>

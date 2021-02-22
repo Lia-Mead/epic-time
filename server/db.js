@@ -113,13 +113,27 @@ module.exports.showFriends = (userId) => {
     return db.query(q, params);
 };
 
-// module.exports.showFriends = (userId) => {
-//     const q = `SELECT users.id, first, last, image, accepted
-//     FROM friendships
-//     JOIN users
-//     ON (accepted = false AND recipient_id = $1 AND sender_id = users.id)
-//     OR (accepted = true AND recipient_id = $1 AND sender_id = users.id)
-//     OR (accepted = true AND sender_id = $1 AND recipient_id = users.id)`;
-//     const params = [userId];
-//     return db.query(q, params);
-// };
+module.exports.addMessage = (senderId, text) => {
+    const q = `INSERT INTO chats (sender_id, message)
+    VALUES ($1, $2) RETURNING *`;
+    const params = [senderId, text];
+    return db.query(q, params);
+};
+
+module.exports.showMessages = () => {
+    const q = `SELECT chats.id, chats.sender_id, chats.message, chats.created_at, users.first, users.last, users.image
+    FROM chats
+    JOIN users
+    ON (sender_id = users.id)
+    ORDER BY chats.id DESC LIMIT 10`;
+    return db.query(q);
+};
+
+module.exports.showNewMessages = () => {
+    const q = `SELECT chats.id, chats.sender_id, chats.message, chats.created_at, users.first, users.last, users.image
+    FROM chats
+    JOIN users
+    ON (sender_id = users.id)
+    ORDER BY chats.id DESC LIMIT 10`;
+    return db.query(q);
+};

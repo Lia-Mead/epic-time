@@ -1,8 +1,6 @@
 // this will contain all of our action creators
-
 import axios from "./Axios";
-
-// an action creator is a function that returns an onjject
+// an action creator is a function that returns an object
 
 export async function receiveFriendsWannabes() {
     const { data } = await axios.get("/friends-wannabes");
@@ -44,4 +42,27 @@ export async function unfriend(id) {
     } catch (err) {
         console.log("err accepting friend: ", err);
     }
+}
+
+export function chatMessage(message) {
+    return {
+        type: "SEND_MESSAGE",
+        message,
+    };
+}
+
+export function showMessages(messages) {
+    // console.log("messages", messages);
+    return {
+        type: "SHOW_MESSAGES",
+        messages,
+    };
+}
+
+export function showNewMessage(newMessage) {
+    console.log("newMessage", newMessage);
+    return {
+        type: "NEW_MESSAGE",
+        newMessage,
+    };
 }

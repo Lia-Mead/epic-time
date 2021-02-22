@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS chats;
 
 CREATE TABLE chats(
     id SERIAL PRIMARY KEY,
-    message_id INTEGER NOT NULL,
-    text VARCHAR NOT NULL,
+    message VARCHAR NOT NULL,
+    sender_id INTEGER REFERENCES users(id) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

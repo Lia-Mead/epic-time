@@ -1,11 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Menu() {
     return (
         <nav>
             <ul>
                 <li>
-                    <NavLink to="/find-users" activeClassName="active">
+                    <NavLink to="/chat" activeClassName="active">
                         Chat
                     </NavLink>
                 </li>

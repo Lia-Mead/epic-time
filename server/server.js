@@ -32,12 +32,23 @@ app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
 app.use(express.json());
 
-app.use(
-    cookieSession({
-        maxAge: 1000 * 60 * 24 * 14,
-        secret: cookie_sec,
-    })
-);
+// app.use(
+//     cookieSession({
+//         maxAge: 1000 * 60 * 24 * 14,
+//         secret: cookie_sec,
+//     })
+// );
+
+const cookieSessionMW = cookieSession({
+    maxAge: 1000 * 60 * 24 * 14,
+    secret: cookie_sec,
+});
+
+app.use(cookieSessionMW);
+io.use(function (socket, next) {
+    // console.log("socket.request.url", socket.request.url);
+    cookieSessionMW(socket.request, socket.request.res, next);
+});
 
 app.use(csurf());
 
@@ -154,26 +165,6 @@ app.post("/registration", async (req, res) => {
         // please fill out all fields error
     }
 });
-
-// app.post("/registration", function (req, res) {
-//     const { first, last, email, password } = req.body;
-//     if (first && last && email && password) {
-//         hash(password).then((hashedPw) => {
-//             db.insertUserData(first, last, email, hashedPw)
-//                 .then(({ rows }) => {
-//                     req.session.userId = rows[0].id;
-//                     res.json({ success: true, data: rows[0] });
-//                 })
-//                 .catch((err) => {
-//                     console.log("error in db insert reg data", err);
-//                     res.json({ success: false });
-//                 });
-//         });
-//     } else {
-//         console.log("please fill out all fields");
-//         res.json({ success: false });
-//     }
-// });
 
 app.post("/login", function (req, res) {
     // console.log("log in");
@@ -349,12 +340,10 @@ app.get("/friends-wannabes", (req, res) => {
     // console.log("get friends-wannabes");
     const userId = req.session.userId;
     // console.log("userId in friends-wannabes,", userId);
-
     db.showFriends(userId)
         .then(({ rows }) => {
             // console.log("rows: ", rows);
             // console.log("sender", sender);
-            // const sender = rows[0].sender_id;
             res.json({ success: true, rows: rows });
         })
         .catch((err) => {
@@ -402,6 +391,7 @@ app.post("/check-friendship/:status", (req, res) => {
 
 app.get("/404", (req, res) => {
     console.log("i am 404");
+    res.json({ notFound: true });
 });
 
 /// NEVER MOVE THIS !!!!!!!!!!!!
@@ -417,38 +407,81 @@ server.listen(process.env.PORT || 3001, function () {
     console.log("I'm listening.");
 });
 
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
     // console.log("socket", socket);
-    // listening to an event called connection
-    // socket object that is passed to the callback represents the network connection b/w client and server
-    console.log(`Socket with id: ${socket.id} has connected`);
+    const { userId } = socket.request.session;
+    // const { chat } = req.body;
+    // console.log("userId connection socket: ", userId);
+    if (!userId) {
+        return socket.disconnect(true);
+    }
 
-    // sends message to its own socket
-    socket.emit("hello", {
-        cohort: "adobo",
+    socket.on("chatMessage", async (text) => {
+        try {
+            // console.log("text chatMessage", text);
+            await db.addMessage(userId, text);
+            const newMessage = await db.showNewMessages();
+            // console.log("rows in show last message: ", rows[0]);
+            io.emit("newMessage", newMessage.rows[0]);
+        } catch (err) {
+            console.log(err, "error in chatMessage");
+        }
     });
 
-    // send a message to all sockets except your own
-    socket.broadcast.emit("hello", {
-        cohort: "adobo",
-    });
-
-    // sends message to a SPECIFIC socket
-    io.sockets.sockets.get(socket.id).emit("hello", {
-        cohort: "adobo",
-    });
-
-    // server to talk to ALL connected sockets
-    io.emit("hello", {
-        cohort: "adobo",
-    });
-
-    // send a message to ALL EXCEPT one
-    io.socket.socket.get(socket.id).broadcast.emit("hello", {
-        cohort: "adobo",
-    });
-
-    socket.on("disconnect", () => {
-        console.log(`Socket with id: ${socket.id} just DISCONNECTED`);
-    });
+    try {
+        const messages = await db.showMessages();
+        // console.log("messages: ", messages);
+        io.emit("chatMessages", messages.rows.reverse());
+    } catch (err) {
+        console.log(err, "error in chatMessage");
+    }
 });
+
+// socket.on("chatMessage", (text) => {
+//     db.addMessage(userId, text)
+//         .then(() => {
+//             db.showLastMessage().then(({ rows }) => {
+//                 console.log("rows in show last message: ", rows[0]);
+//                 io.emit("newMessage", rows[0]);
+//             });
+//         })
+//         .catch((err) => {
+//             console.log("there was an error in addMessage: ", err);
+//         });
+// });
+
+// io.on("connection", (socket) => {
+//     // console.log("socket", socket);
+//     // listening to an event called connection
+//     // socket object that is passed to the callback represents the network connection b/w client and server
+//     console.log(`Socket with id: ${socket.id} has connected`);
+
+//     // sends message to its own socket
+//     socket.emit("hello", {
+//         cohort: "adobo",
+//     });
+
+//     // send a message to all sockets except your own
+//     socket.broadcast.emit("hello", {
+//         cohort: "adobo",
+//     });
+
+//     // sends message to a SPECIFIC socket
+//     io.sockets.sockets.get(socket.id).emit("hello", {
+//         cohort: "adobo",
+//     });
+
+//     // server to talk to ALL connected sockets
+//     io.emit("hello", {
+//         cohort: "adobo",
+//     });
+
+//     // send a message to ALL EXCEPT one
+//     io.socket.socket.get(socket.id).broadcast.emit("hello", {
+//         cohort: "adobo",
+//     });
+
+//     socket.on("disconnect", () => {
+//         console.log(`Socket with id: ${socket.id} just DISCONNECTED`);
+//     });
+// });
