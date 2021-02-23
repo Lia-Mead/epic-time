@@ -29,12 +29,17 @@ export default function Chat(props) {
     });
 
     const enterSend = (e) => {
-        e.keyCode === 13 && newMessage();
+        if (e.keyCode === 13) {
+            newMessage();
+            e.preventDefault();
+        }
     };
 
     function newMessage() {
         // console.log("e.target.value", e.target.value);
-        socket.emit("chatMessage", inputRef.current.value);
+        if (inputRef.current.value != 0) {
+            socket.emit("chatMessage", inputRef.current.value);
+        }
         inputRef.current.value = "";
     }
 
