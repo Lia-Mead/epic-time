@@ -9,16 +9,13 @@ export default function Menu() {
                         Chat
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink to="/find-users" activeClassName="active">
-                        Online
-                    </NavLink>
-                </li>
+
                 <li>
                     <NavLink to="/show-my-friends" activeClassName="active">
                         Friends
                     </NavLink>
                 </li>
+
                 <li>
                     <NavLink to="/find-users" activeClassName="active">
                         Find People
@@ -32,3 +29,9 @@ export default function Menu() {
         </nav>
     );
 }
+
+//   <li>
+//       <NavLink to="/find-users" activeClassName="active">
+//           Online
+//       </NavLink>
+//   </li>

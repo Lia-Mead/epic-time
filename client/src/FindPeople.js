@@ -42,7 +42,7 @@ export default function FindPeople() {
 
     return (
         <div className="find-people">
-            <h1>Groove Is In The Heart</h1>
+            <h1>Groove is in the Heart</h1>
             <h3>Check out the new time travelers</h3>
 
             {user &&

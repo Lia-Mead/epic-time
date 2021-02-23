@@ -124,7 +124,8 @@ nav ul li a {
 
 .active,
 .active:hover {
-    color: #cfa7d7;
+    /* color: #cfa7d7; */
+    color: white;
     cursor: default;
     /* text-decoration: underline; */
 }

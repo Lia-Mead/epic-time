@@ -36,7 +36,7 @@ export default function Friends() {
 
     return (
         <div className="friends-con">
-            <h1>Wannabes</h1>
+            <h2>Wannabes</h2>
             <div className="friends">
                 {wannabes.length === 0 && <h3>It's Oh So Quiet</h3>}
                 {wannabes &&
@@ -74,7 +74,7 @@ export default function Friends() {
             </div>
 
             <div style={{ marginTop: "40px" }}>
-                <h1>Friends</h1>
+                <h2>Friends</h2>
                 <div className="friends">
                     {friends.length === 0 && <h3>You are not alone</h3>}
                     {friends &&
@@ -105,7 +105,7 @@ export default function Friends() {
             </div>
 
             <div style={{ marginTop: "40px" }}>
-                <h1>My Pending Requests</h1>
+                <h2>My Pending Requests</h2>
                 <div className="friends">
                     {pending.length === 0 && <h3>Common People</h3>}
                     {pending &&
