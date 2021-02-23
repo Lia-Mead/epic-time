@@ -72,7 +72,7 @@ export default class App extends Component {
         }
         return (
             <BrowserRouter>
-                <div className="app">
+                <div className="app bg-img">
                     <Header
                         first={this.state.first}
                         last={this.state.last}
@@ -133,14 +133,17 @@ export default class App extends Component {
                             render={() => <Friends />}
                         />
 
-                        <Route path="/chat" render={() => <Chat />} />
+                        <Route
+                            path="/chat"
+                            render={() => <Chat id={this.state.id} />}
+                        />
 
                         <Route component={NotFound} />
                     </Switch>
 
                     <footer>
                         <div className="foot-note">
-                            © Made with 🖤 by Liat Meadows 2021
+                            © Made with ♡ by Liat Meadows 2021
                         </div>
                     </footer>
                 </div>

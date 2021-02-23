@@ -2,11 +2,14 @@ import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { socket } from "./socket";
 
-export default function Chat() {
+export default function Chat(props) {
     const inputRef = useRef("");
     let scrollRef = useRef();
 
     const allMessages = useSelector((state) => state.messages);
+    console.log("allMessages", allMessages);
+    // const cookie = useSelector((state) => state.cookie);
+    // console.log("cookie", cookie);
 
     const messageHandleChange = (e) => {
         // console.log("e.target.value", e.target.value);
@@ -36,14 +39,21 @@ export default function Chat() {
     }
 
     return (
-        <div className="chats high">
+        <div className="chats">
             <h1>90's Chat</h1>
             <h2>Recieved Messages</h2>
 
             <div className="messages-display" ref={scrollRef}>
                 {allMessages &&
                     allMessages.map((msg) => (
-                        <div className="message" key={msg.id}>
+                        <div
+                            className={
+                                msg.sender_id == props.id
+                                    ? "message my"
+                                    : "message"
+                            }
+                            key={msg.id}
+                        >
                             <div className="chat-user">
                                 <img
                                     className="profile-pic small"

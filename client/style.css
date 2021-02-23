@@ -66,7 +66,8 @@ h3 {
 }
 
 a {
-    color: #5ab1a9;
+    /* color: #5ab1a9; */
+    color: #008f82;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -113,6 +114,7 @@ nav ul li {
 
 nav ul li a {
     margin: 20px;
+    color: #7ecdc5;
 }
 
 .active {
@@ -211,6 +213,7 @@ textarea:focus {
     margin-top: 30px;
     min-height: auto;
     height: 100px;
+    max-width: 80%;
 }
 
 .chat-user {
@@ -346,20 +349,52 @@ footer {
     font-size: 0.8em;
 }
 
+.bg-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+
+    /* background-repeat: no-repeat;
+    background-image: linear-gradient(
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0.9)
+        ),
+        url(/images/bg.jpg);
+    background-position: center center;
+    display: block;
+    position: relative; */
+}
+
+/* .bg-img::after {
+    content: "";
+    background: url(image.jpg);
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+} */
+
 /* Components*/
 
 .messages-display {
     width: 80%;
-    height: 720px;
+    height: 730px;
     overflow-y: scroll;
-    /* margin: 30px 0;*/
-    padding: 30px;
-    background-color: #deeef3;
-    border-radius: 30px;
+    padding: 20px;
 }
 
 .message {
     margin: 30px 0;
+    background-color: #deeef3;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+.message.my {
+    background-color: #e6dcf6;
 }
 
 .burger {
@@ -402,6 +437,7 @@ footer {
     flex-direction: column;
     align-items: center;
     margin-bottom: 60px;
+    min-height: 85vh;
 }
 
 .profile.high {
@@ -461,6 +497,7 @@ footer {
     display: flex;
     align-items: center;
     margin: 20px;
+    width: 400px;
 }
 
 .user-search img {
@@ -483,8 +520,8 @@ footer {
 .app {
     display: flex;
     flex-direction: column;
-    /* width: 100vw; */
     min-height: 100vh;
+    /* width: 100vw; */
 }
 
 .uploader {
@@ -546,7 +583,7 @@ footer {
 
     h1 {
         font-size: 1.7em;
-        margin: 50px 0px 0px;
+        margin: 50px 10px 0px;
     }
     h2 {
         font-size: 1.3em;

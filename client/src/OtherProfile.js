@@ -3,6 +3,8 @@ import axios from "./Axios";
 import { Link } from "react-router-dom";
 import FriendShipButton from "./FriendshipButton";
 
+// const [id, setId] = useState("");
+
 export default class OtherProfile extends Component {
     constructor(props) {
         super(props);

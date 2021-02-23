@@ -55,12 +55,13 @@ export function showMessages(messages) {
     // console.log("messages", messages);
     return {
         type: "SHOW_MESSAGES",
-        messages,
+        messages: messages.messages,
+        // cookie: messages.cookie,
     };
 }
 
 export function showNewMessage(newMessage) {
-    console.log("newMessage", newMessage);
+    // console.log("newMessage", newMessage);
     return {
         type: "NEW_MESSAGE",
         newMessage,
