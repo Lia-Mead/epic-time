@@ -105,9 +105,7 @@ nav a {
 }
 
 nav a:hover {
-    /* color: #d4f1ef; */
-    font-weight: bold;
-    color: #b78abf;
+    color: #d4f1ef;
 }
 
 nav ul {
@@ -125,8 +123,11 @@ nav ul li a {
     color: #7ecdc5;
 }
 
-.active {
-    color: #b78abf;
+.active,
+.active:hover {
+    color: #cfa7d7;
+    text-decoration: underline;
+    cursor: default;
 }
 
 .active-b {

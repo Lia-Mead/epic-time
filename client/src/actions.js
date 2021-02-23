@@ -55,8 +55,7 @@ export function showMessages(messages) {
     // console.log("messages", messages);
     return {
         type: "SHOW_MESSAGES",
-        messages: messages.messages,
-        // cookie: messages.cookie,
+        messages,
     };
 }
 

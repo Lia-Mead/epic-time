@@ -446,10 +446,7 @@ io.on("connection", async (socket) => {
     try {
         const messages = await db.showMessages();
         // console.log("messages: ", messages);
-        io.emit("chatMessages", {
-            messages: messages.rows.reverse(),
-            // cookie: userId,
-        });
+        io.emit("chatMessages", messages.rows.reverse());
     } catch (err) {
         console.log(err, "error in chatMessage");
     }
