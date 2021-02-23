@@ -44,13 +44,12 @@ h1 {
     text-align: center;
     margin: 50px 30px 0px;
     font-size: 1.9em;
-    /* font-weight: 500;
-    text-transform: uppercase; */
+    /* font-family: "Space Mono"; */
 }
 
 h2 {
-    color: #a778b6;
-    /* color: #56568e; */
+    /* color: #a778b6; */
+    color: black;
     font-family: "Space Mono";
     text-align: center;
     font-weight: 100;
@@ -126,8 +125,8 @@ nav ul li a {
 .active,
 .active:hover {
     color: #cfa7d7;
-    text-decoration: underline;
     cursor: default;
+    /* text-decoration: underline; */
 }
 
 .active-b {
@@ -165,6 +164,11 @@ nav ul li a {
     align-items: center;
     width: 100%;
     background-color: #262323;
+}
+
+.intro > h2 {
+    /* background-color: cornsilk; */
+    color: cornsilk;
 }
 
 .intro > p {
@@ -342,7 +346,6 @@ input:-webkit-autofill {
 }
 
 .btn.ghost:hover {
-    /* background-color: #d4f2ef; */
     border: 1px solid black;
     color: black;
 }
@@ -363,7 +366,7 @@ footer {
     height: auto;
     object-fit: cover;
 
-    /* background-repeat: no-repeat;
+    /* background-repeat: no-repeat; */
     background-image: linear-gradient(
             rgba(255, 255, 255, 0.8),
             rgba(255, 255, 255, 0.9)
@@ -371,33 +374,22 @@ footer {
         url(/images/bg.jpg);
     background-position: center center;
     display: block;
-    position: relative; */
+    position: relative;
+    background-size: cover;
 }
-
-/* .bg-img::after {
-    content: "";
-    background: url(image.jpg);
-    opacity: 0.5;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-} */
 
 /* Components*/
 
 .messages-display {
-    width: 80%;
+    /* width: 80%; */
     height: 730px;
     overflow-y: scroll;
-    padding: 20px;
+    padding: 0 20px;
 }
 
 .message {
     margin: 30px 0;
-    background-color: #deeef3;
+    background-color: white;
     padding: 10px;
     border-radius: 30px;
 }
@@ -439,14 +431,15 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 60px;
 }
 
 .chats {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 30px;
     min-height: 85vh;
+    height: calc(100vh - 100px);
 }
 
 .profile.high {
@@ -457,13 +450,35 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    min-height: 300px;
-    padding: 20px 0 100px;
-    border-bottom: 4px dotted #a778b6;
+    min-height: 150px;
+    /* padding: 20px 0 100px; */
+    border-bottom: 4px dotted black;
+    /* border-bottom: 4px dotted #a778b6; */
 }
 
 .friends > h1 {
     width: 100%;
+}
+
+.other-con {
+    background-color: rgb(234 237 241);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0;
+}
+
+.other-friends {
+    display: grid;
+    flex-wrap: wrap;
+    min-height: 300px;
+    padding: 30px 0 40px;
+    grid-template-columns: repeat(3, 1fr);
+    width: 80%;
+    align-self: center;
+    grid-template-rows: min-content;
+    grid-auto-rows: min-content;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
 }
 
 .icons {
@@ -472,7 +487,11 @@ footer {
     margin: 20px 0;
 }
 
-/* .friends-con > friends:last-child {
+.friends-con:last-child {
+    border-bottom: none;
+}
+
+/* .friends:last-child {
     border-bottom: none;
 } */
 
@@ -493,6 +512,14 @@ footer {
     padding: 12px;
 }
 
+.profile-pic.other {
+    width: 100px;
+    height: 100px;
+    margin: 0px;
+    cursor: pointer;
+    border-radius: 7px;
+}
+
 .profile-pic img {
     display: inline;
     margin: 0 auto;
@@ -502,22 +529,35 @@ footer {
     border: 1px solid white;
 }
 
-.user-search {
+.other-friend-box {
     display: flex;
     align-items: center;
     margin: 20px;
     width: 400px;
 }
 
+.user-search {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    width: 420px;
+}
+
 .user-search img {
     width: 100px;
     height: 100px;
     object-fit: cover;
-    border-radius: 50%;
+    /* border-radius: 50%; */
+    border-radius: 7px;
 }
 
-.user-search p {
+.user-search p,
+.other-friend-box p {
     margin: 20px;
+}
+
+.con-bg {
+    background-color: rgb(245, 234, 234);
 }
 
 .icon {

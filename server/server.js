@@ -367,6 +367,23 @@ app.get("/friends-wannabes", (req, res) => {
         });
 });
 
+app.get("/friends-of-someoneelse/:userId", (req, res) => {
+    // console.log("get friends-wannabes");
+    const cookieId = req.session.userId;
+    const { userId } = req.params;
+    console.log("userId in someoneelse,", userId);
+    db.showFriendsOthers(userId)
+        .then(({ rows }) => {
+            console.log("rows: ", rows);
+            // console.log("sender", sender);
+            res.json({ success: true, rows: rows, cookie: cookieId });
+        })
+        .catch((err) => {
+            console.log("error in friends-wannabes", err);
+            res.json({ success: false });
+        });
+});
+
 app.post("/check-friendship/:status", (req, res) => {
     // console.log("post send friend request route");
     const requestedUser = req.body.id;

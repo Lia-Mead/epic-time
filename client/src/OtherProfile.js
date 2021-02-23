@@ -1,65 +1,70 @@
-import { Component } from "react";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "./Axios";
 import { Link } from "react-router-dom";
 import FriendShipButton from "./FriendshipButton";
 
-// const [id, setId] = useState("");
+export default function OtherProfile(props) {
+    const [id, setId] = useState("");
+    const [first, setFirst] = useState("");
+    const [last, setLast] = useState("");
+    const [image, setImage] = useState("");
+    const [bio, setBio] = useState("");
+    const [error, setError] = useState(false);
+    const [friendship, setFriendship] = useState("");
+    const [userfriends, setUserfriends] = useState([]);
 
-export default class OtherProfile extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            id: this.props.id,
-            first: this.props.first,
-            last: this.props.last,
-            profilePicUrl: this.props.profilePicUrl,
-            bio: this.props.bio,
-            error: false,
-        };
-    }
+    // first elemet is the current state - first time the component renders is the defaut value
+    // state updates - those values update
+    // second element - are FUNCTIONS - that i use to update the state
 
-    updateFriendshipStatus(status) {
-        this.setState(
-            {
-                friendship: status,
-            },
-            () => console.log("this.state.friendship", this.state.friendship)
-        );
-    }
+    const updateFriendshipStatus = (status) => {
+        setFriendship(status);
+    };
 
-    componentDidMount() {
-        // console.log("props in mount other profile", props);
-        // console.log("this.props.match: ", this.props.match);
-        console.log("this.props.match.params id: ", this.props.match.params.id);
+    useEffect(() => {
+        console.log("this.props.match.params id: ", props.match.params.id);
 
         axios
-            .get(`/show-users/${this.props.match.params.id}`)
+            .get(`/show-users/${props.match.params.id}`)
             .then((resp) => {
-                if (this.props.match.params.id == resp.data.cookie) {
-                    return this.props.history.push("/");
+                if (props.match.params.id == resp.data.cookie) {
+                    return props.history.push("/");
                 }
-                this.setState({
-                    id: resp.data.rows.id,
-                    first: resp.data.rows.first,
-                    last: resp.data.rows.last,
-                    profilePicUrl: resp.data.rows.image,
-                    bio: resp.data.rows.bio,
-                    error: false,
-                });
+                setId(resp.data.rows.id);
+                setFirst(resp.data.rows.first);
+                setLast(resp.data.rows.last);
+                setImage(resp.data.rows.image);
+                setBio(resp.data.rows.bio);
+                setError(false);
             })
             .catch((err) => {
                 console.log("error in GET other profile", err);
-                this.setState({
-                    error: true,
-                });
+                setError(true);
             });
-    }
 
-    render() {
-        if (!this.state.id) {
-            return (
-                <div style={{ minHeight: "84vh" }} className="profile error">
-                    {this.state.error && (
+        axios
+            .get(`/friends-of-someoneelse/${props.match.params.id}`)
+            .then((resp) => {
+                console.log("resp.data.rows.id", resp.data.rows[0].id);
+                console.log("resp.data.rows.id", resp.data.rows);
+                console.log("cookie", resp.data.cookie);
+                // if (resp.data.rows[0].id != resp.data.cookie) {
+                //     return;
+                // }
+                setUserfriends(resp.data.rows);
+            })
+            .catch((err) => {
+                console.log("error in GET other friends-of-someoneelse", err);
+                setError(true);
+            });
+    }, []);
+
+    return (
+        <>
+            {!id && (
+                <div className="profile error">
+                    {error && (
                         <>
                             <p>This user has not yet made it to the 90's.</p>
 
@@ -80,34 +85,59 @@ export default class OtherProfile extends Component {
                         </>
                     )}
                 </div>
-            );
-        }
-        return (
-            <div className="profile high">
-                <h1>
-                    {this.state.first} {this.state.last}
-                </h1>
-                <img
-                    className="profile-pic"
-                    src={this.state.profilePicUrl || "/images/avatar.svg"}
-                    alt={`${this.state.first} ${this.state.last}`}
-                />
-                <p className="bio">{this.state.bio}</p>
-                <FriendShipButton
-                    id={this.state.id}
-                    updateFriendshipStatus={(e) => {
-                        this.updateFriendshipStatus(e);
-                    }}
-                />
-                <Link
-                    style={{
-                        marginTop: "120px",
-                    }}
-                    to="/find-users"
-                >
-                    <h3>Find More Retro Humans</h3>
-                </Link>
-            </div>
-        );
-    }
+            )}
+
+            {id && (
+                <div className="profile">
+                    <h1>
+                        {first} {last}
+                    </h1>
+                    <img
+                        className="profile-pic"
+                        src={image || "/images/avatar.svg"}
+                        alt={`${first} ${last}`}
+                    />
+                    <p className="bio">{bio}</p>
+                    <FriendShipButton
+                        id={id}
+                        updateFriendshipStatus={(e) => {
+                            updateFriendshipStatus(e);
+                        }}
+                    />
+                </div>
+            )}
+
+            {!userfriends.length == 0 && (
+                <div className="other-con">
+                    <h2>{first}'s Friends</h2>
+                    <div className="other-friends">
+                        {userfriends &&
+                            userfriends.map((user) => (
+                                <div key={user.id}>
+                                    <Link
+                                        className="other-friend-box"
+                                        to={`/user/${user.id}`}
+                                    >
+                                        <img
+                                            className="profile-pic other"
+                                            src={
+                                                user.image ||
+                                                "/images/avatar.svg"
+                                            }
+                                        />
+                                        <p>
+                                            {user.first} {user.last}
+                                        </p>
+                                    </Link>
+                                </div>
+                            ))}
+                    </div>
+                </div>
+            )}
+
+            <Link to="/find-users">
+                <h3>Find More Retro Humans</h3>
+            </Link>
+        </>
+    );
 }

@@ -44,7 +44,7 @@ export default function Chat(props) {
     }
 
     return (
-        <div className="chats">
+        <div className="chats bg-img">
             <h1>90's Chat</h1>
             <h2>Recieved Messages</h2>
 

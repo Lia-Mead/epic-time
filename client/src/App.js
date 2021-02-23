@@ -72,7 +72,7 @@ export default class App extends Component {
         }
         return (
             <BrowserRouter>
-                <div className="app bg-img">
+                <div className="app">
                     <Header
                         first={this.state.first}
                         last={this.state.last}
@@ -140,14 +140,12 @@ export default class App extends Component {
 
                         <Route component={NotFound} />
                     </Switch>
-
-                    <footer>
-                        <div className="foot-note">
-                            © Made with ♡ by Liat Meadows 2021
-                        </div>
-                    </footer>
                 </div>
             </BrowserRouter>
         );
     }
 }
+
+//   <footer>
+//       <div className="foot-note">© Made with ♡ by Liat Meadows 2021</div>
+//   </footer>
