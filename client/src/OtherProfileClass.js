@@ -30,7 +30,7 @@ export default class OtherProfileClass extends Component {
     componentDidMount() {
         // console.log("props in mount other profile", props);
         // console.log("this.props.match: ", this.props.match);
-        console.log("this.props.match.params id: ", this.props.match.params.id);
+        // console.log("this.props.match.params id: ", this.props.match.params.id);
 
         axios
             .get(`/show-users/${this.props.match.params.id}`)
@@ -89,7 +89,7 @@ export default class OtherProfileClass extends Component {
                 </h1>
                 <img
                     className="profile-pic"
-                    src={this.state.profilePicUrl || "/images/avatar.svg"}
+                    src={this.state.profilePicUrl || "/images/avatar.jpg"}
                     alt={`${this.state.first} ${this.state.last}`}
                 />
                 <p className="bio">{this.state.bio}</p>

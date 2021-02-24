@@ -13,11 +13,11 @@ export default class Counter extends Component {
 
     // this is a lifecycle method
     componentDidMount() {
-        console.log("component mounted!!!");
+        // console.log("component mounted!!!");
     }
 
     incrementCount() {
-        console.log("incrementing!!!!");
+        // console.log("incrementing!!!!");
         this.setState({
             count: this.state.count + 1,
         });

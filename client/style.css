@@ -191,7 +191,7 @@ nav ul li a {
     max-width: 55%;
     display: flex;
     align-items: center;
-    padding-left: 2%;
+    padding-left: 3%;
 }
 
 .reg-form {
@@ -227,6 +227,7 @@ textarea:focus {
     height: 100px;
     min-height: 50px;
     max-width: 80%;
+    resize: none;
 }
 
 .chat-user {
@@ -597,7 +598,7 @@ footer {
 }
 
 .icon {
-    width: 45px;
+    width: 35px;
     cursor: pointer;
     margin: 0 20px;
 }
@@ -647,6 +648,7 @@ footer {
 @media only screen and (max-width: 700px) {
     .welcome {
         flex-direction: column;
+        height: auto;
     }
 
     .intro {
@@ -656,6 +658,12 @@ footer {
     .intro > p {
         width: 90%;
         margin-bottom: 70px;
+    }
+
+    .intro .logo {
+        width: 35%;
+        max-width: 40%;
+        margin-top: 40px;
     }
 
     .center-box {
@@ -683,5 +691,9 @@ footer {
 
     .bio {
         width: 80%;
+    }
+
+    textarea {
+        width: auto;
     }
 }

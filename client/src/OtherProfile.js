@@ -23,7 +23,7 @@ export default function OtherProfile(props) {
     };
 
     useEffect(() => {
-        console.log("this.props.match.params id: ", props.match.params.id);
+        // console.log("this.props.match.params id: ", props.match.params.id);
 
         axios
             .get(`/show-users/${props.match.params.id}`)
@@ -49,7 +49,7 @@ export default function OtherProfile(props) {
                 const userId = resp.data.userId;
 
                 const notMe = resp.data.rows.filter((friend) => {
-                    console.log("friend", friend);
+                    // console.log("friend", friend);
                     return (
                         friend.sender_id != userId &&
                         friend.recipient_id != userId
@@ -107,7 +107,7 @@ export default function OtherProfile(props) {
                     </h1>
                     <img
                         className="profile-pic"
-                        src={image || "/images/avatar.svg"}
+                        src={image || "/images/avatar.jpg"}
                         alt={`${first} ${last}`}
                     />
                     <p className="bio">{bio}</p>
@@ -126,13 +126,13 @@ export default function OtherProfile(props) {
                         <img
                             style={{ cursor: "default" }}
                             className="profile-pic small"
-                            src={myself.image || "/images/avatar.svg"}
+                            src={myself.image || "/images/avatar.jpg"}
                         />
                         &
                         <img
                             style={{ cursor: "default" }}
                             className="profile-pic small"
-                            src={image || "/images/avatar.svg"}
+                            src={image || "/images/avatar.jpg"}
                         />
                     </div>
 
@@ -153,10 +153,7 @@ export default function OtherProfile(props) {
                                     >
                                         <img
                                             className="profile-pic other"
-                                            src={
-                                                user.image ||
-                                                "/images/avatar.svg"
-                                            }
+                                            src={user.image || "/imagejpg"}
                                         />
                                         <p>
                                             {user.first} {user.last}

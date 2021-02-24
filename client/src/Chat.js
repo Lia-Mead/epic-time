@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { socket } from "./socket";
 
 export default function Chat(props) {
@@ -7,7 +7,7 @@ export default function Chat(props) {
     let scrollRef = useRef();
 
     const allMessages = useSelector((state) => state.messages);
-    console.log("allMessages", allMessages);
+    // console.log("allMessages", allMessages);
     // const cookie = useSelector((state) => state.cookie);
     // console.log("cookie", cookie);
 
@@ -25,7 +25,7 @@ export default function Chat(props) {
 
     useEffect(() => {
         scrollToBottom();
-        console.log("elemRef.current.scrollTop", scrollRef.current.scrollTop);
+        // console.log("elemRef.current.scrollTop", scrollRef.current.scrollTop);
     });
 
     const enterSend = (e) => {
@@ -62,7 +62,7 @@ export default function Chat(props) {
                             <div className="chat-user">
                                 <img
                                     className="profile-pic small"
-                                    src={msg.image || "/images/avatar.svg"}
+                                    src={msg.image || "/images/avatar.jpg"}
                                 />
                                 <p>
                                     {msg.first} {msg.last} on{" "}

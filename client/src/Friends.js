@@ -46,7 +46,7 @@ export default function Friends() {
                             <div className="profile">
                                 <img
                                     className="profile-pic"
-                                    src={user.image || "/images/avatar.svg"}
+                                    src={user.image || "/images/avatar.jpg"}
                                 />
                                 <p>
                                     {user.first} {user.last}
@@ -84,7 +84,7 @@ export default function Friends() {
                                 <div className="profile">
                                     <img
                                         className="profile-pic"
-                                        src={user.image || "/images/avatar.svg"}
+                                        src={user.image || "/images/avatar.jpg"}
                                     />
                                     <p>
                                         {user.first} {user.last}
@@ -115,7 +115,7 @@ export default function Friends() {
                                 <div className="profile">
                                     <img
                                         className="profile-pic"
-                                        src={user.image || "/images/avatar.svg"}
+                                        src={user.image || "/images/avatar.jpg"}
                                     />
                                     <p>
                                         {user.first} {user.last}

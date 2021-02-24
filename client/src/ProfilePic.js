@@ -5,11 +5,11 @@ export default function ProfilePic({
     toggleUploader,
     size = "",
 }) {
-    // const imgUrl = profilePicUrl || "/images/avatar.svg";
+    // const imgUrl = profilePicUrl || "/images/avatar.jpg";
 
     return (
         <img
-            src={profilePicUrl || "/images/avatar.svg"}
+            src={profilePicUrl || "/images/avatar.jpg"}
             alt={`${first} ${last}`}
             className={`${size} profile-pic`}
             onClick={toggleUploader}

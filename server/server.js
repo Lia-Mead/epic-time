@@ -6,6 +6,7 @@ const server = require("http").Server(app);
 //     allowRequest: (req, callback) =>
 //         callback(null, req.headers.referer.startsWith("http://localhost:3000")),
 // });
+
 // const io = require("socket.io")(server, {
 //     allowRequest: (req, callback) =>
 //         callback(
@@ -208,13 +209,13 @@ app.post("/login", function (req, res) {
 });
 
 app.post("/delete-profile-pic", (req, res) => {
-    console.log("I am delete post pic");
+    // console.log("I am delete post pic");
 
     // added to get info of the fileurl
     db.getProfile(req.session.userId)
         .then(({ rows }) => {
             // console.log("get usrowser rows in 0", rows[0]);
-            console.log("Deleting image:", rows[0].image);
+            // console.log("Deleting image:", rows[0].image);
             s3.deleteImage(rows[0].image);
         })
         .catch((err) => {
@@ -300,7 +301,6 @@ app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
 app.get("/users", (req, res) => {
     db.threeUsers()
         .then(({ rows }) => {
-            // console.log("here are the last 3 users");
             // console.log("rows: ", rows);
             res.json({ rows: rows });
         })
@@ -450,7 +450,6 @@ app.post("/check-friendship/:status", (req, res) => {
 });
 
 app.post("/delete-account", async (req, res) => {
-    // console.log("account deleted");
     const userId = req.session.userId;
 
     try {
@@ -469,7 +468,6 @@ app.post("/delete-account", async (req, res) => {
 });
 
 app.get("/404", (req, res) => {
-    console.log("i am 404");
     res.json({ notFound: true });
 });
 
@@ -508,7 +506,6 @@ io.on("connection", async (socket) => {
 
     try {
         const messages = await db.showMessages();
-        // console.log("messages: ", messages);
         io.emit("chatMessages", messages.rows.reverse());
     } catch (err) {
         console.log(err, "error in chatMessage");

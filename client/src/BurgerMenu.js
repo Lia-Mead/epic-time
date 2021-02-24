@@ -8,6 +8,17 @@ export default function BurgerMenu({ toggleBurgerMenu }) {
                 className="nav-icon"
                 activeClassName="active-b"
                 onClick={toggleBurgerMenu}
+                exact
+                to="/"
+            >
+                <img src="images/home.svg" className="icon" alt="online-icon" />
+                Home
+            </NavLink>
+
+            <NavLink
+                className="nav-icon"
+                activeClassName="active-b"
+                onClick={toggleBurgerMenu}
                 to="/chat"
             >
                 <img src="images/chat.svg" className="icon" alt="chat-icon" />
@@ -49,13 +60,3 @@ export default function BurgerMenu({ toggleBurgerMenu }) {
         </nav>
     );
 }
-
-//   <NavLink
-//       className="nav-icon"
-//       activeClassName="active-b"
-//       onClick={toggleBurgerMenu}
-//       to="/find-users"
-//   >
-//       <img src="images/online.svg" className="icon" alt="online-icon" />
-//       Online
-//   </NavLink>

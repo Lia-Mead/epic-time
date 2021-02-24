@@ -18,8 +18,7 @@ export async function receiveFriendsWannabes() {
 export async function acceptFriend(id) {
     try {
         const { data } = await axios.post("/check-friendship/accept", { id });
-        console.log(("acceptFriend data: ", data));
-        // console.log("acceptFriend data.rows.id", data.rows);
+        // console.log(("acceptFriend data: ", data));
         return {
             type: "ACCEPT_FRIEND",
             id: id,
@@ -32,7 +31,7 @@ export async function acceptFriend(id) {
 export async function unfriend(id) {
     try {
         const { data } = await axios.post("/check-friendship/end", { id });
-        console.log(("unfriend data: ", data));
+        // console.log(("unfriend data: ", data));
         // console.log("unfriend data.id", data.id);
         // console.log("unfriend data.rows.id", data.rows.id);
         return {

@@ -25,7 +25,7 @@ export default function Header(props) {
     const [burgerOpen, setBurgerOpen] = useState(false);
 
     const toggleBurgerMenu = () => {
-        console.log("toggle open");
+        // console.log("toggle open");
         setBurgerOpen(!burgerOpen);
     };
 

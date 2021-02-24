@@ -44,12 +44,12 @@ function SearchCountries() {
 
         // this funtion runs BEFORE every re-render - cleanup function (equivalent componentWillUnmount)
         return () => {
-            console.log("country in returned function: ", country);
+            // console.log("country in returned function: ", country);
             abort = true;
         };
     }, [country]);
 
-    console.log("countries: ", countries);
+    // console.log("countries: ", countries);
 
     return (
         <div>

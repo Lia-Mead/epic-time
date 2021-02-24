@@ -54,7 +54,7 @@ export default function FindPeople() {
                             className="user-search"
                         >
                             <img
-                                src={user.image || "/images/avatar.svg"}
+                                src={user.image || "/images/avatar.jpg"}
                                 alt={`${user.first} ${user.last}`}
                             />
                             <p>{`${user.first} ${user.last} `}</p>
@@ -90,7 +90,7 @@ export default function FindPeople() {
                             className="user-search"
                         >
                             <img
-                                src={val.image || "/images/avatar.svg"}
+                                src={val.image || "/images/avatar.jpg"}
                                 alt={`${val.first} ${val.last}`}
                             />
                             <p>{`${val.first} ${val.last} `}</p>

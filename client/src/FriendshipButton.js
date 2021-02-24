@@ -19,11 +19,8 @@ export default function FriendshipButton(props) {
         axios
             .get(`/check-friendship/${props.id}`)
             .then(({ data }) => {
-                console.log("data in get friendship: ", data);
-                console.log("data.accepted", data.accepted);
-
+                // console.log("data.accepted", data.accepted);
                 setFriendshipStatus(data.button);
-                // setAccepted(data.accepted);
 
                 if (data.button == "cancel") {
                     props.updateFriendshipStatus(true);
@@ -39,11 +36,11 @@ export default function FriendshipButton(props) {
     }, []);
 
     const setSubmit = () => {
-        console.log("setSubmit");
+        // console.log("setSubmit");
         axios
             .post(`/check-friendship/${friendshipStatus}`, { id: props.id })
             .then(({ data }) => {
-                console.log("data: ", data);
+                // console.log("data: ", data);
                 setFriendshipStatus(data.button);
 
                 if (data.button == "cancel") {

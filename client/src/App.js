@@ -56,20 +56,15 @@ export default class App extends Component {
         });
     }
 
-    // sayHello() {
-    //     console.log("i am saying hello from app");
-    // }
-
     render() {
         // console.log("this.state in app: ", this.state);
         if (!this.state.id) {
-            return null;
-            // return (
-            //     <div className="spinner-container">
-            //         <div className="spinner"></div>
-            //     </div>
-            // );
+            // return null;
+            <div className="spinner-page">
+                <img src="/images/loading.svg" className="spinner" />
+            </div>;
         }
+
         return (
             <BrowserRouter>
                 <div className="app">

@@ -5,6 +5,12 @@ export default function Menu() {
         <nav>
             <ul>
                 <li>
+                    <NavLink exact to="/" activeClassName="active">
+                        Home
+                    </NavLink>
+                </li>
+
+                <li>
                     <NavLink to="/chat" activeClassName="active">
                         Chat
                     </NavLink>
@@ -29,9 +35,3 @@ export default function Menu() {
         </nav>
     );
 }
-
-//   <li>
-//       <NavLink to="/find-users" activeClassName="active">
-//           Online
-//       </NavLink>
-//   </li>
