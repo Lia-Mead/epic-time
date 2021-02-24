@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { receiveFriendsWannabes, acceptFriend, unfriend } from "./actions";
 
@@ -134,6 +135,19 @@ export default function Friends() {
                         ))}
                 </div>
             </div>
+
+            {friends.length === 0 &&
+                wannabes.length === 0 &&
+                pending.length === 0 && (
+                    <Link to="/find-users">
+                        <button
+                            style={{ margin: "60px auto", display: "block" }}
+                            className="btn user"
+                        >
+                            Start Making Friends
+                        </button>
+                    </Link>
+                )}
         </div>
     );
 }

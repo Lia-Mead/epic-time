@@ -14,12 +14,12 @@ export default function DeleteProfilePic(props) {
             });
     };
     return (
-        <div>
+        <>
             <img
                 onClick={() => submit()}
                 src="/images/delete.svg"
                 className="icon"
             />
-        </div>
+        </>
     );
 }

@@ -252,7 +252,10 @@ app.get("/show-users/:userId", (req, res) => {
 app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
     // console.log("I am profile-pic");
     const { filename } = req.file;
+    // const { userId } = req.session.userId;
+
     const fullUrl = config.s3Url + filename;
+    // const fullUrl = `${userId}/${config.s3Url}${filename}`;
     // console.log("req.session.userId in PROFILE PIC", req.session.userId);
 
     if (req.file) {
@@ -371,12 +374,12 @@ app.get("/friends-of-someoneelse/:userId", (req, res) => {
     // console.log("get friends-wannabes");
     const cookieId = req.session.userId;
     const { userId } = req.params;
-    console.log("userId in someoneelse,", userId);
+    // console.log("userId in someoneelse,", userId);
     db.showFriendsOthers(userId)
         .then(({ rows }) => {
-            console.log("rows: ", rows);
+            // console.log("rows: ", rows);
             // console.log("sender", sender);
-            res.json({ success: true, rows: rows, cookie: cookieId });
+            res.json({ success: true, rows: rows, userId: cookieId });
         })
         .catch((err) => {
             console.log("error in friends-wannabes", err);

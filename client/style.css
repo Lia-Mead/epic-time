@@ -44,7 +44,6 @@ h1 {
     text-align: center;
     margin: 50px 30px 0px;
     font-size: 1.9em;
-    /* font-family: "Space Mono"; */
 }
 
 h2 {
@@ -168,8 +167,7 @@ nav ul li a {
 }
 
 .intro > h2 {
-    /* background-color: cornsilk; */
-    color: cornsilk;
+    color: #a778b6;
 }
 
 .intro > p {
@@ -381,8 +379,25 @@ footer {
 
 /* Components*/
 
+.connected-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #d4f2ef;
+}
+
+.connected {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.connected > p {
+}
+
 .messages-display {
-    /* width: 80%; */
     height: 730px;
     overflow-y: scroll;
     padding: 0 20px;
@@ -441,6 +456,7 @@ footer {
     align-items: center;
     min-height: 85vh;
     height: calc(100vh - 100px);
+    padding-bottom: 60px;
 }
 
 .profile.high {
@@ -473,7 +489,6 @@ footer {
     flex-wrap: wrap;
     min-height: 300px;
     padding: 30px 0 40px;
-    grid-template-columns: repeat(3, 1fr);
     width: 80%;
     align-self: center;
     grid-template-rows: min-content;
@@ -484,8 +499,8 @@ footer {
 
 .icons {
     display: flex;
-    flex-wrap: wrap;
     margin: 20px 0;
+    max-height: 50px;
 }
 
 .friends-con:last-child {
@@ -627,8 +642,10 @@ footer {
         height: 100%;
     }
 
-    .btn {
+    .btn,
+    .btn.user {
         width: 80%;
+        padding: 20px;
     }
 
     h1 {

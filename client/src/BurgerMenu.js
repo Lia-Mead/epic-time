@@ -13,19 +13,7 @@ export default function BurgerMenu({ toggleBurgerMenu }) {
                 <img src="images/chat.svg" className="icon" alt="chat-icon" />
                 Chat
             </NavLink>
-            <NavLink
-                className="nav-icon"
-                activeClassName="active-b"
-                onClick={toggleBurgerMenu}
-                to="/find-users"
-            >
-                <img
-                    src="images/online.svg"
-                    className="icon"
-                    alt="online-icon"
-                />
-                Online
-            </NavLink>
+
             <NavLink
                 className="nav-icon"
                 activeClassName="active-b"
@@ -39,6 +27,7 @@ export default function BurgerMenu({ toggleBurgerMenu }) {
                 />
                 Friends
             </NavLink>
+
             <NavLink
                 className="nav-icon"
                 activeClassName="active-b"
@@ -60,3 +49,13 @@ export default function BurgerMenu({ toggleBurgerMenu }) {
         </nav>
     );
 }
+
+//   <NavLink
+//       className="nav-icon"
+//       activeClassName="active-b"
+//       onClick={toggleBurgerMenu}
+//       to="/find-users"
+//   >
+//       <img src="images/online.svg" className="icon" alt="online-icon" />
+//       Online
+//   </NavLink>

@@ -13,6 +13,7 @@ export default function OtherProfile(props) {
     const [error, setError] = useState(false);
     const [friendship, setFriendship] = useState("");
     const [userfriends, setUserfriends] = useState([]);
+    const [myself, setMyself] = useState(false);
 
     // first elemet is the current state - first time the component renders is the defaut value
     // state updates - those values update
@@ -46,13 +47,30 @@ export default function OtherProfile(props) {
         axios
             .get(`/friends-of-someoneelse/${props.match.params.id}`)
             .then((resp) => {
-                console.log("resp.data.rows.id", resp.data.rows[0].id);
-                console.log("resp.data.rows.id", resp.data.rows);
-                console.log("cookie", resp.data.cookie);
-                // if (resp.data.rows[0].id != resp.data.cookie) {
-                //     return;
-                // }
-                setUserfriends(resp.data.rows);
+                // console.log("resp.data.rows.id", resp.data.rows[0].id);
+                // console.log("resp.data.rows.id", resp.data.rows);
+                // console.log("cookie", resp.data.cookie);
+
+                const userId = resp.data.userId;
+
+                const notMe = resp.data.rows.filter((friend) => {
+                    console.log("friend", friend);
+                    return (
+                        friend.sender_id != userId &&
+                        friend.recipient_id != userId
+                    );
+                });
+
+                const myself = resp.data.rows.find((friend) => {
+                    return (
+                        friend.sender_id == userId ||
+                        friend.recipient_id == userId
+                    );
+                });
+
+                setMyself(myself);
+
+                setUserfriends(notMe);
             })
             .catch((err) => {
                 console.log("error in GET other friends-of-someoneelse", err);
@@ -104,6 +122,26 @@ export default function OtherProfile(props) {
                             updateFriendshipStatus(e);
                         }}
                     />
+                </div>
+            )}
+
+            {myself && (
+                <div className="connected-con">
+                    <div className="connected">
+                        <img
+                            style={{ cursor: "default" }}
+                            className="profile-pic small"
+                            src={myself.image}
+                        />
+                        &
+                        <img
+                            style={{ cursor: "default" }}
+                            className="profile-pic small"
+                            src={image}
+                        />
+                    </div>
+
+                    <p className="">{first} and I are Friends</p>
                 </div>
             )}
 

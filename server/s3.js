@@ -42,4 +42,13 @@ exports.upload = (req, res, next) => {
             // uh oh
             console.log(err);
         });
+
+    // const promise = s3DelAWS.S3(awsCredentials);
+    // s3.deleteObject(
+    //     {
+    //         Bucket: "liatsbucket",
+    //         Key: filename,
+    //     },
+    //     function (err, data) {}
+    // );
 };
