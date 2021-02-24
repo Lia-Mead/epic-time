@@ -4,7 +4,7 @@ import reduxPromise from "redux-promise";
 import { Provider } from "react-redux";
 import { reducer } from "./reducer";
 import { composeWithDevTools } from "redux-devtools-extension";
-import Welcome from "./Welcome.js";
+import Welcome from "./welcome.js";
 import App from "./App";
 
 import { init as initializeSocket } from "./socket";
