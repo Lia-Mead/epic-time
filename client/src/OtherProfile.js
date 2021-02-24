@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import axios from "./Axios";
 import { Link } from "react-router-dom";
 import FriendShipButton from "./FriendshipButton";
