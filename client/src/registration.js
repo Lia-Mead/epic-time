@@ -19,7 +19,7 @@ export default class Registration extends React.Component {
     handleChange(e) {
         // console.log("e target value", e.target.value);
         // see where the user types in
-        console.log("e target name", e.target.name);
+        // console.log("e target name", e.target.name);
         this.setState(
             {
                 [e.target.name]: e.target.value,

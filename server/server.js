@@ -455,7 +455,9 @@ app.post("/delete-account", async (req, res) => {
     try {
         const users = await db.getProfile(userId);
         // console.log("users are ", users.rows[0]);
-        s3.deleteImage(users.rows[0].image);
+        if (users.rows[0].image != null) {
+            s3.deleteImage(users.rows[0].image);
+        }
         db.deleteCodes(userId);
         db.deleteChats(userId);
         db.deleteFriendships(userId);
