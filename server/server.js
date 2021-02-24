@@ -6,13 +6,17 @@ const server = require("http").Server(app);
 //     allowRequest: (req, callback) =>
 //         callback(null, req.headers.referer.startsWith("http://localhost:3000")),
 // });
+// const io = require("socket.io")(server, {
+//     allowRequest: (req, callback) =>
+//         callback(
+//             null,
+//             req.headers.referer.startsWith("http://localhost:3000") ||
+//                 req.headers.referer.startsWith("http://epic-time.herokuapp.com")
+//         ),
+// });
+
 const io = require("socket.io")(server, {
-    allowRequest: (req, callback) =>
-        callback(
-            null,
-            req.headers.referer.startsWith("http://localhost:3000") ||
-                req.headers.referer.startsWith("http://epic-time.herokuapp.com")
-        ),
+    origins: "localhost:3000 https://epic-time.herokuapp.com/:*",
 });
 
 const compression = require("compression");

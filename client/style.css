@@ -225,6 +225,7 @@ textarea:focus {
     margin-top: 30px;
     min-height: auto;
     height: 100px;
+    min-height: 50px;
     max-width: 80%;
 }
 
@@ -419,6 +420,7 @@ footer {
     height: 730px;
     overflow-y: scroll;
     padding: 0 20px;
+    min-width: 30%;
 }
 
 .message {
