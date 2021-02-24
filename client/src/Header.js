@@ -9,10 +9,12 @@ export default function Header(props) {
     // console.log("mql media: ", mql.media);
     // console.log("mql matches: ", mql.matches);
     const [mQuery, setMQuery] = useState();
+    const [screenSize, setScreenSize] = useState();
 
     useEffect(() => {
         // componentDidMount - registers eventlistener, event fired by the browser
         window.addEventListener("resize", updateSize);
+        setScreenSize(window.innerWidth);
     });
 
     const updateSize = () => {
@@ -39,7 +41,7 @@ export default function Header(props) {
                     <Logo onClick={toggleBurgerMenu} className="logo" />
                 </Link>
                 <div className="menu-right">
-                    {mQuery ? (
+                    {screenSize < 900 || mQuery ? (
                         <img
                             onClick={toggleBurgerMenu}
                             className="icon"

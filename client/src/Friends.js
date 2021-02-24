@@ -36,7 +36,7 @@ export default function Friends() {
     }
 
     return (
-        <div className="friends-con">
+        <div className="friends-con" style={{ marginTop: "40px" }}>
             <h2>Wannabes</h2>
             <div className="friends">
                 {wannabes.length === 0 && <h3>It's Oh So Quiet</h3>}

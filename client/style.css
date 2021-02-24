@@ -206,7 +206,7 @@ textarea {
     margin: 0px;
     max-width: 800px;
     min-width: 400px;
-    min-height: 200px;
+    /* min-height: 200px; */
     height: 222px;
     width: 600px;
     font-size: 24px;
@@ -215,6 +215,7 @@ textarea {
     color: #00af91;
     background: content-box;
     border-radius: 20px;
+    resize: none;
 }
 
 textarea:focus {
@@ -225,7 +226,7 @@ textarea:focus {
     margin-top: 30px;
     min-height: auto;
     height: 100px;
-    min-height: 50px;
+    min-height: 70px;
     max-width: 80%;
     resize: none;
 }
@@ -292,6 +293,12 @@ input:-webkit-autofill {
     width: 80%;
     margin: 0 auto;
     min-height: 89vh;
+}
+
+.spinner-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn {
@@ -646,6 +653,9 @@ footer {
 }
 
 @media only screen and (max-width: 700px) {
+    header {
+        flex-flow: row;
+    }
     .welcome {
         flex-direction: column;
         height: auto;
@@ -670,19 +680,18 @@ footer {
         height: 100%;
     }
 
-    .btn,
+    /* .btn,
     .btn.user {
         width: 80%;
-        padding: 20px;
-    }
+    } */
 
     h1 {
         font-size: 1.7em;
-        margin: 50px 10px 0px;
+        margin: 20px;
     }
     h2 {
         font-size: 1.3em;
-        margin-top: 50px;
+        margin-top: 0px;
     }
 
     p {
@@ -695,5 +704,11 @@ footer {
 
     textarea {
         width: auto;
+        min-width: 200px;
+        min-height: 222px;
+    }
+
+    .chats {
+        padding-bottom: 10px;
     }
 }
