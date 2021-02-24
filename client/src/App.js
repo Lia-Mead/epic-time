@@ -1,10 +1,10 @@
 import { Component } from "react";
-import Header from "./header";
+import Header from "./Header";
 import Uploader from "./Uploader";
 import Profile from "./Profile";
 import OtherProfile from "./OtherProfile";
 import FindPeople from "./FindPeople";
-import Friends from "./friends";
+import Friends from "./Friends";
 import Chat from "./Chat";
 import axios from "./Axios";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
