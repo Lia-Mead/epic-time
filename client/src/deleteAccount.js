@@ -3,7 +3,6 @@ import { useState } from "react";
 
 export default function DeleteAccount() {
     const [toggleDel, setToggleDel] = useState(false);
-    // const [notMember, setNotMember] = useState(false);
 
     const toggleDelete = () => {
         setToggleDel(!toggleDel);
@@ -13,7 +12,6 @@ export default function DeleteAccount() {
         axios
             .post(`/delete-account`)
             .then(() => {
-                // setNotMember(true);
                 window.location.reload();
             })
             .catch((err) => {
@@ -45,7 +43,3 @@ export default function DeleteAccount() {
         </>
     );
 }
-
-// {
-//     notMember && <p>Sad to see you Go</p>;
-// }

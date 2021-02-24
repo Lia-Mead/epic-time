@@ -46,10 +46,6 @@ export default function OtherProfile(props) {
         axios
             .get(`/friends-of-someoneelse/${props.match.params.id}`)
             .then((resp) => {
-                // console.log("resp.data.rows.id", resp.data.rows[0].id);
-                // console.log("resp.data.rows.id", resp.data.rows);
-                // console.log("cookie", resp.data.cookie);
-
                 const userId = resp.data.userId;
 
                 const notMe = resp.data.rows.filter((friend) => {
