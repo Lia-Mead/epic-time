@@ -37,11 +37,13 @@ export default function Profile(props) {
                     src="/images/camera.svg"
                 />
 
-                <DeleteProfilePic
-                    profilePicUrl={profilePicUrl}
-                    deletePic={deletePic}
-                    id={id}
-                />
+                {profilePicUrl && (
+                    <DeleteProfilePic
+                        profilePicUrl={profilePicUrl}
+                        deletePic={deletePic}
+                        id={id}
+                    />
+                )}
             </div>
 
             <BioEditor bio={bio} />
