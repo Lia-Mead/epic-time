@@ -1,8 +1,8 @@
 import { HashRouter, Route } from "react-router-dom";
-import Registration from "./Registration";
-import Login from "./Login";
-import ResetPassword from "./ResetPassword";
-import Logo from "./Logo";
+import Registration from "./registration";
+import Login from "./login";
+import ResetPassword from "./resetPassword";
+import Logo from "./logo";
 
 export default function Welcome() {
     return (

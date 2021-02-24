@@ -1,6 +1,6 @@
-import Logo from "./Logo";
-import ProfilePic from "./ProfilePic";
-import BurgerMenu from "./BurgerMenu";
+import Logo from "./logo";
+import ProfilePic from "./profilePic";
+import BurgerMenu from "./burgerMenu";
 import Menu from "./Menu";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
