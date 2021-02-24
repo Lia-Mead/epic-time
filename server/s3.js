@@ -44,9 +44,10 @@ exports.upload = (req, res, next) => {
         });
 
     exports.deleteImage = (filename) => {
+        // console.log("filename", filename);
         s3.deleteObject({
             Bucket: "liatsbucket",
-            Key: filename,
+            Key: filename.substr(37),
         })
             .promise()
             .then((response) => {

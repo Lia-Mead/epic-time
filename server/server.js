@@ -205,6 +205,19 @@ app.post("/login", function (req, res) {
 
 app.post("/delete-profile-pic", (req, res) => {
     console.log("I am delete post pic");
+
+    // added to get info of the fileurl
+    db.getProfile(req.session.userId)
+        .then(({ rows }) => {
+            // console.log("get usrowser rows in 0", rows[0]);
+            console.log("Deleting image:", rows[0].image);
+            s3.deleteImage(rows[0].image);
+        })
+        .catch((err) => {
+            console.log(err, "error in getProfile");
+            res.json({ success: false });
+        });
+
     db.deleteProfilePic(req.session.userId)
         .then(({ rows }) => {
             console.log("rows: ", rows);
@@ -261,7 +274,6 @@ app.get("/show-users/:userId", (req, res) => {
 app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
     // console.log("I am profile-pic");
     const { filename } = req.file;
-    // const { userId } = req.session.userId;
 
     const fullUrl = config.s3Url + filename;
     // const fullUrl = `${userId}/${config.s3Url}${filename}`;
@@ -436,11 +448,11 @@ app.post("/check-friendship/:status", (req, res) => {
 app.post("/delete-account", async (req, res) => {
     // console.log("account deleted");
     const userId = req.session.userId;
-    // const filename = req.body.url.replace(s3Url, "");
 
     try {
-        // const img = await db.getProfile(userId);
-        // s3.deleteImage(img.image);
+        const users = await db.getProfile(userId);
+        // console.log("users are ", users.rows[0]);
+        s3.deleteImage(users.rows[0].image);
         db.deleteCodes(userId);
         db.deleteChats(userId);
         db.deleteFriendships(userId);
@@ -481,10 +493,9 @@ io.on("connection", async (socket) => {
 
     socket.on("chatMessage", async (text) => {
         try {
-            // console.log("text chatMessage", text);
             await db.addMessage(userId, text);
             const newMessage = await db.showNewMessages();
-            // console.log("rows in show last message: ", rows[0]);
+
             io.emit("newMessage", newMessage.rows[0]);
         } catch (err) {
             console.log(err, "error in chatMessage");
