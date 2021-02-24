@@ -424,6 +424,25 @@ app.post("/check-friendship/:status", (req, res) => {
     }
 });
 
+app.post("/delete-account", async (req, res) => {
+    // console.log("account deleted");
+    const userId = req.session.userId;
+    // const filename = req.body.url.replace(s3Url, "");
+
+    try {
+        // const img = await db.getProfile(userId);
+        // s3.deleteImage(img.image);
+        db.deleteCodes(userId);
+        db.deleteChats(userId);
+        db.deleteFriendships(userId);
+        await db.deleteUser(userId);
+        res.redirect("/logout");
+    } catch (err) {
+        console.log("err in delete account: ", err);
+        res.json({ success: false });
+    }
+});
+
 app.get("/404", (req, res) => {
     console.log("i am 404");
     res.json({ notFound: true });

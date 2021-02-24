@@ -394,7 +394,25 @@ footer {
     justify-content: center;
 }
 
-.connected > p {
+.del-link {
+    margin: 40px;
+    color: black;
+    text-decoration: underline;
+}
+
+.del-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    padding: 40px;
+    border: 1px black dotted;
+    border-radius: 7px;
+}
+
+.connencted > button {
+    margin: 20px !important;
 }
 
 .messages-display {

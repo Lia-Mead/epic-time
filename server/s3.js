@@ -43,12 +43,18 @@ exports.upload = (req, res, next) => {
             console.log(err);
         });
 
-    // const promise = s3DelAWS.S3(awsCredentials);
-    // s3.deleteObject(
-    //     {
-    //         Bucket: "liatsbucket",
-    //         Key: filename,
-    //     },
-    //     function (err, data) {}
-    // );
+    exports.deleteImage = (filename) => {
+        s3.deleteObject({
+            Bucket: "liatsbucket",
+            Key: filename,
+        })
+            .promise()
+            .then((response) => {
+                console.log("delete successfull:", response);
+                next();
+            })
+            .catch((err) => {
+                console.log("err deleting image:", err);
+            });
+    };
 };

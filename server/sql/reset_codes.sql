@@ -4,5 +4,6 @@ CREATE TABLE reset_codes(
     id SERIAL PRIMARY KEY,
     email VARCHAR NOT NULL,
     code VARCHAR NOT NULL,
+    reset_id INT REFERENCES users(id) NOT NULL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

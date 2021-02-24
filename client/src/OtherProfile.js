@@ -131,13 +131,13 @@ export default function OtherProfile(props) {
                         <img
                             style={{ cursor: "default" }}
                             className="profile-pic small"
-                            src={myself.image}
+                            src={myself.image || "/images/avatar.svg"}
                         />
                         &
                         <img
                             style={{ cursor: "default" }}
                             className="profile-pic small"
-                            src={image}
+                            src={image || "/images/avatar.svg"}
                         />
                     </div>
 

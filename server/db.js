@@ -155,3 +155,31 @@ module.exports.showFriendsOthers = (userId) => {
     const params = [userId];
     return db.query(q, params);
 };
+
+module.exports.deleteChats = (userId) => {
+    const q = `DELETE FROM chats
+    WHERE sender_id = $1`;
+    const params = [userId];
+    return db.query(q, params);
+};
+
+module.exports.deleteCodes = (userId) => {
+    const q = `DELETE FROM reset_codes
+    WHERE reset_id = $1`;
+    const params = [userId];
+    return db.query(q, params);
+};
+
+module.exports.deleteFriendships = (userId) => {
+    const q = `DELETE FROM friendships
+    WHERE sender_id = $1 OR recipient_id = $1`;
+    const params = [userId];
+    return db.query(q, params);
+};
+
+module.exports.deleteUser = (userId) => {
+    const q = `DELETE FROM users
+    WHERE id = $1`;
+    const params = [userId];
+    return db.query(q, params);
+};

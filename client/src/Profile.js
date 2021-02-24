@@ -1,6 +1,7 @@
 import ProfilePic from "./ProfilePic";
 import BioEditor from "./BioEditor";
 import DeleteProfilePic from "./DeleteProfilePic";
+import DeleteAccount from "./DeleteAccount";
 
 export default function Profile(props) {
     // console.log("props in profile", props);
@@ -44,6 +45,8 @@ export default function Profile(props) {
             </div>
 
             <BioEditor bio={bio} />
+
+            <DeleteAccount />
         </div>
     );
 }
