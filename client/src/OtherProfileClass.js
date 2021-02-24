@@ -1,7 +1,7 @@
 import { Component } from "react";
 import axios from "./Axios";
 import { Link } from "react-router-dom";
-import FriendShipButton from "./FriendshipButton";
+import FriendShipButton from "./friendshipButton";
 
 // const [id, setId] = useState("");
 

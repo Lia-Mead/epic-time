@@ -1,4 +1,4 @@
-import FriendshipButton from "../FriendshipButton";
+import FriendshipButton from "../friendshipButton";
 import { render, fireEvent } from "@testing-library/react";
 import axios from "../Axios";
 import { act } from "react-dom/test-utils";

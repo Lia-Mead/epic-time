@@ -1,4 +1,4 @@
-import ProfilePic from "./profilePic";
+import ProfilePic from "./ProfilePic";
 import BioEditor from "./bioEditor";
 import DeleteProfilePic from "./deleteProfilePic";
 import DeleteAccount from "./deleteAccount";

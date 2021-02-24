@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "./Axios";
 import { Link } from "react-router-dom";
-import FriendShipButton from "./FriendshipButton";
+import FriendShipButton from "./friendshipButton";
 
 export default function OtherProfile(props) {
     const [id, setId] = useState("");
