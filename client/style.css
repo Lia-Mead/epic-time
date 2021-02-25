@@ -449,7 +449,7 @@ footer {
     position: absolute;
     display: flex;
     z-index: 300;
-    top: 105px;
+    top: 73px;
     flex-direction: column;
     text-align: left;
     justify-content: center;
@@ -540,16 +540,16 @@ footer {
 } */
 
 .profile-pic {
-    width: 300px;
-    height: 300px;
+    width: 270px;
+    height: 270px;
     border-radius: 50%;
     margin: 50px 50px 10px;
     object-fit: cover;
 }
 
 .profile-pic.small {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     margin: 0px;
     cursor: pointer;
@@ -557,8 +557,8 @@ footer {
 }
 
 .profile-pic.other {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     margin: 0px;
     cursor: pointer;
     border-radius: 7px;
@@ -653,6 +653,18 @@ footer {
 }
 
 @media only screen and (max-width: 700px) {
+    .uploader {
+        flex-direction: column;
+    }
+
+    .profile-pic {
+        margin: 10px 0;
+    }
+
+    .other-friend-box {
+        width: auto;
+    }
+
     header {
         flex-flow: row;
     }
@@ -680,22 +692,27 @@ footer {
         height: 100%;
     }
 
-    /* .btn,
+    .menu-right > .icon {
+        margin: 0;
+    }
+
+    .btn,
     .btn.user {
-        width: 80%;
-    } */
+        margin: 30px;
+        font-size: 0.8em;
+    }
 
     h1 {
-        font-size: 1.7em;
+        font-size: 1.3em;
         margin: 20px;
     }
     h2 {
-        font-size: 1.3em;
+        font-size: 1em;
         margin-top: 0px;
     }
 
     p {
-        font-size: 0.9em;
+        font-size: 0.8em;
     }
 
     .bio {
@@ -706,6 +723,10 @@ footer {
         width: auto;
         min-width: 200px;
         min-height: 222px;
+    }
+
+    input {
+        width: auto;
     }
 
     .chats {

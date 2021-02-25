@@ -153,7 +153,10 @@ export default function OtherProfile(props) {
                                     >
                                         <img
                                             className="profile-pic other"
-                                            src={user.image || "/imagejpg"}
+                                            src={
+                                                user.image ||
+                                                "/images/avatar.jpg"
+                                            }
                                         />
                                         <p>
                                             {user.first} {user.last}
