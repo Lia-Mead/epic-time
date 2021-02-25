@@ -407,6 +407,7 @@ footer {
     margin: 40px;
     color: black;
     text-decoration: underline;
+    font-size: 0.8em;
 }
 
 .del-box {
