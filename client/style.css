@@ -665,6 +665,10 @@ footer {
         width: auto;
     }
 
+    .search-con {
+        font-size: 0.8em;
+    }
+
     header {
         flex-flow: row;
     }
