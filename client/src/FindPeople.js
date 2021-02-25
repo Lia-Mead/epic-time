@@ -72,8 +72,6 @@ export default function FindPeople() {
                 />
             </div>
 
-            {userInput && <h3>All That She Wants is another friend</h3>}
-
             {error && (
                 <p className="error">
                     Hello, there's no one here you're looking for
@@ -97,6 +95,8 @@ export default function FindPeople() {
                         </Link>
                     );
                 })}
+
+            {userInput && <h3>All That She Wants is another friend</h3>}
         </div>
     );
 }

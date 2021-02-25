@@ -655,6 +655,17 @@ footer {
 @media only screen and (max-width: 700px) {
     .uploader {
         flex-direction: column;
+        margin: 0 auto;
+    }
+
+    .user-search {
+        margin: 10px 0;
+        width: auto;
+    }
+
+    .user-search img {
+        width: 80px;
+        height: 80px;
     }
 
     .profile-pic {
@@ -714,6 +725,9 @@ footer {
         font-size: 1em;
         margin-top: 0px;
     }
+    h3 {
+        font-size: 0.9em;
+    }
 
     p {
         font-size: 0.8em;
@@ -730,7 +744,7 @@ footer {
     }
 
     input {
-        width: auto;
+        margin: 0;
     }
 
     .chats {
