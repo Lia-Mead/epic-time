@@ -11,7 +11,11 @@ export default function BurgerMenu({ toggleBurgerMenu }) {
                 exact
                 to="/"
             >
-                <img src="images/home.svg" className="icon" alt="online-icon" />
+                <img
+                    src="/images/home.svg"
+                    className="icon"
+                    alt="online-icon"
+                />
                 Home
             </NavLink>
 
@@ -21,7 +25,7 @@ export default function BurgerMenu({ toggleBurgerMenu }) {
                 onClick={toggleBurgerMenu}
                 to="/chat"
             >
-                <img src="images/chat.svg" className="icon" alt="chat-icon" />
+                <img src="/images/chat.svg" className="icon" alt="chat-icon" />
                 Chat
             </NavLink>
 
@@ -32,7 +36,7 @@ export default function BurgerMenu({ toggleBurgerMenu }) {
                 to="/show-my-friends"
             >
                 <img
-                    src="images/friends.svg"
+                    src="/images/friends.svg"
                     className="icon"
                     alt="friends-icon"
                 />
@@ -45,13 +49,17 @@ export default function BurgerMenu({ toggleBurgerMenu }) {
                 onClick={toggleBurgerMenu}
                 to="/find-users"
             >
-                <img src="images/search.svg" className="icon" alt="find-icon" />
+                <img
+                    src="/images/search.svg"
+                    className="icon"
+                    alt="find-icon"
+                />
                 Find People
             </NavLink>
 
             <a className="nav-icon" href="/logout">
                 <img
-                    src="images/logout.svg"
+                    src="/images/logout.svg"
                     className="icon"
                     alt="logout-icon"
                 />
