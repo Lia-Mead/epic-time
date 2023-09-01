@@ -1,4 +1,6 @@
-const aws = require("aws-sdk");
+const {
+    S3
+} = require("@aws-sdk/client-s3");
 const fs = require("fs");
 
 let secrets;
@@ -8,7 +10,7 @@ if (process.env.NODE_ENV == "production") {
     secrets = require("../secrets"); // in dev they are in secrets.json which is listed in .gitignore
 }
 
-const s3 = new aws.S3({
+const s3 = new S3({
     accessKeyId: secrets.AWS_KEY,
     secretAccessKey: secrets.AWS_SECRET,
 });
@@ -28,8 +30,7 @@ exports.upload = (req, res, next) => {
             Body: fs.createReadStream(path),
             ContentType: mimetype,
             ContentLength: size,
-        })
-        .promise();
+        });
 
     promise
         .then(() => {
@@ -49,7 +50,6 @@ exports.upload = (req, res, next) => {
             Bucket: "liatsbucket",
             Key: filename.substr(37),
         })
-            .promise()
             .then((response) => {
                 console.log("delete successfull:", response);
                 next();
